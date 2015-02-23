@@ -3,12 +3,12 @@ class Article
   attr_reader :title, :body, :author, :created_at
 
   def initialize(title, body, author=nil)
-    @title=title
-    @body=body
-    @author=author
-    @created_at=Time.now
-    @likes=0
-    @dislikes=0
+    @title = title
+    @body = body
+    @author = author
+    @created_at = Time.now
+    @likes = 0
+    @dislikes = 0
   end
 
   def like!
@@ -16,7 +16,7 @@ class Article
   end
 
   def dislike!
-    self.dislikes +=1
+    self.dislikes += 1
   end
 
   def points
@@ -32,14 +32,14 @@ class Article
   end
 
   def long_lines
-    body.lines.to_a.select{|line| line.length>80}
+    body.lines.to_a.select{|line| line.length > 80}
   end
 
   def truncate(limit)
     if body.length <= limit
       body
     else
-      body[0,limit-3] << "..."
+      body[0,limit - 3] << "..."
    end
   end
 
@@ -47,7 +47,7 @@ class Article
     if search_string.is_a?(String)
       return  !! body[search_string]
     elsif search_string.respond_to?(:match)
-      return search_string.match(body).length >0     
+      return search_string.match(body).length > 0     
     else
      return false
     end
@@ -70,15 +70,15 @@ class ArticlesFileSystem
   end
 
   def load
-    articles= Array.new
+    articles = Array.new
     Dir.chdir("#{@dir_name}") 
     Dir.glob("*.article").each do |filename|
       File.open(filename, "r") do |file|
-        title=File.basename(filename, ".article").gsub("_", " ").capitalize
-        data=File.read(filename).split("||")
+        title = File.basename(filename, ".article").gsub("_", " ").capitalize
+        data = File.read(filename).split("||")
         article = Article.new(title, data[3], data[0])
-        article.likes=data[1].to_i
-        article.dislikes=data[2].to_i
+        article.likes = data[1].to_i
+        article.dislikes = data[2].to_i
         articles << article     
       end      
     end
@@ -93,14 +93,14 @@ class WebPage
 
 
   attr_reader :articles
-  def initialize(dir_name="/")
-    @dir_name=dir_name
-    @fs=ArticlesFileSystem.new(@dir_name)
+  def initialize(dir_name = "/")
+    @dir_name = dir_name
+    @fs = ArticlesFileSystem.new(@dir_name)
     self.load
   end
 
   def load
-      @articles=@fs.load
+      @articles = @fs.load
   end
 
   def save
@@ -108,8 +108,8 @@ class WebPage
   end
 
   def new_article(title, body, author)
-    article=Article.new(title, body, author)
-    @articles <<article
+    article = Article.new(title, body, author)
+    @articles << article
   end
 
 
@@ -136,7 +136,7 @@ class WebPage
 
   def worst_article
     #worst_article – returns article with the least points. Raise WebPage::NoArticlesFound exception if web page does not have any articles
-      raise WebPage::NoArticlesFound if articles.length==0
+    raise WebPage::NoArticlesFound if articles.length==0
     worst_articles.first
   end
 
@@ -146,8 +146,8 @@ class WebPage
   end
   def votes
     #returns the sum of votes from all articles
-    total_votes=0
-    articles.each{|article| total_votes+=article.votes}
+    total_votes = 0
+    articles.each{|article| total_votes += article.votes}
     total_votes
   end
   
@@ -159,14 +159,13 @@ class WebPage
 
   def authors_statistics
     author_stats = Hash.new(0)
-    articles.each{|article| author_stats[article.author] +=1}
+    articles.each{|article| author_stats[article.author] += 1}
     author_stats
   end
 
   def best_author
-    authors=authors_statistics.sort_by{|key,value| value}
+    authors = authors_statistics.sort_by{|key,value| value}
     authors.last[0]
-
   end
 end
 

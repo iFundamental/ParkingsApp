@@ -144,9 +144,29 @@ class WebPage
     #most_controversial_articles – returns an array of articles sorted by number of votes.
      articles.sort { |x,y| y.votes <=> x.votes }
   end
+  def votes
+    #returns the sum of votes from all articles
+    total_votes=0
+    articles.each{|article| total_votes+=article.votes}
+    total_votes
+  end
+  
+  def authors
+    authors = Array.new
+    articles.each{|article| authors << article.author}
+    authors.uniq
+  end
 
+  def authors_statistics
+    author_stats = Hash.new(0)
+    articles.each{|article| author_stats[article.author] +=1}
+    author_stats
+  end
 
+  def best_author
+    authors=authors_statistics.sort_by{|key,value| value}
+    authors.last[0]
 
-
+  end
 end
 

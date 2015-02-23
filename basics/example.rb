@@ -1,6 +1,7 @@
 class Article
   attr_accessor :likes, :dislikes
   attr_reader :title, :body, :author, :created_at
+
   def initialize(title, body, author=nil)
     @title=title
     @body=body
@@ -9,42 +10,49 @@ class Article
     @likes=0
     @dislikes=0
   end
+
   def like!
-  	  @likes += 1
+    @likes += 1
   end
+
   def dislike!
-  	@dislikes +=1
+    @dislikes +=1
   end
+
   def points
-  	@likes - @dislikes
+    @likes - @dislikes
   end
+
   def votes
-  	@likes + @dislikes
+    @likes + @dislikes
   end
+
   def length
-  	@body.length
+    @body.length
   end
+
   def long_lines
-  	@body.lines.to_a.select{|line| line.length>80}
+    @body.lines.to_a.select{|line| line.length>80}
   end
+
   def truncate(limit)
     if @body.length <= limit
-  	  @body
+      @body
     else
-  	  @body[0,limit-3] << "..."
+      @body[0,limit-3] << "..."
    end
   end
+
   def contain?(search_string)
     if search_string.is_a?(String)
-  	  return @body.include? search_string
-  	elsif search_string.respond_to?(:match)
-  	  return search_string.match(@body).length >0			
-  	else
-  	 return false
+      return @body.include? search_string
+    elsif search_string.respond_to?(:match)
+      return search_string.match(@body).length >0     
+    else
+     return false
     end
   end
 end
-
 
 class ArticlesFileSystem
   def initialize(dir_name)

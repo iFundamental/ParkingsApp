@@ -59,7 +59,13 @@ class ArticlesFileSystem
     @dir_name = dir_name
   end 
 
-  def save(aricles)
-
+  def save(articles)
+    articles.each do |article|
+      filename = article.title.gsub(" ", "_").downcase << ".article"
+      filebody = article.author << "||" << article.likes.to_s << "||" << article.dislikes.to_s << "||" << article.body
+      File.open("#{@dir_name}/#{filename}", 'w+') do |f|  
+       f.write filebody
+      end  
+    end 
   end
 end

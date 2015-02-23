@@ -12,42 +12,42 @@ class Article
   end
 
   def like!
-    @likes += 1
+    self.likes += 1
   end
 
   def dislike!
-    @dislikes +=1
+    self.dislikes +=1
   end
 
   def points
-    @likes - @dislikes
+    likes - dislikes
   end
 
   def votes
-    @likes + @dislikes
+    likes + dislikes
   end
 
   def length
-    @body.length
+    body.length
   end
 
   def long_lines
-    @body.lines.to_a.select{|line| line.length>80}
+    body.lines.to_a.select{|line| line.length>80}
   end
 
   def truncate(limit)
-    if @body.length <= limit
-      @body
+    if body.length <= limit
+      body
     else
-      @body[0,limit-3] << "..."
+      body[0,limit-3] << "..."
    end
   end
 
   def contain?(search_string)
     if search_string.is_a?(String)
-      return @body.include? search_string
+      return body.include? search_string
     elsif search_string.respond_to?(:match)
-      return search_string.match(@body).length >0     
+      return search_string.match(body).length >0     
     else
      return false
     end
@@ -58,4 +58,8 @@ class ArticlesFileSystem
   def initialize(dir_name)
     @dir_name = dir_name
   end 
+
+  def save(aricles)
+
+  end
 end

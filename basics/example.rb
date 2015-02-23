@@ -84,6 +84,27 @@ class ArticlesFileSystem
     end
     articles
   end
-
-
 end
+
+class WebPage
+  attr_reader :articles
+  def initialize(dir_name="/")
+    @dir_name=dir_name
+    @fs=ArticlesFileSystem.new(@dir_name)
+    self.load
+  end
+
+  def load
+      @articles=@fs.load
+  end
+
+  def save
+    @fs.save(@articles)
+  end
+
+  def new_article(title, body, author)
+    article=Article.new(title, body, author)
+    @articles <<article
+  end
+end
+

@@ -45,7 +45,7 @@ class Article
 
   def contain?(search_string)
     if search_string.is_a?(String)
-      return body.include? search_string
+      return  !! body[search_string]
     elsif search_string.respond_to?(:match)
       return search_string.match(body).length >0     
     else

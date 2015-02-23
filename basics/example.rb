@@ -87,6 +87,11 @@ class ArticlesFileSystem
 end
 
 class WebPage
+
+  class NoArticlesFound < StandardError  
+  end 
+
+
   attr_reader :articles
   def initialize(dir_name="/")
     @dir_name=dir_name
@@ -106,5 +111,42 @@ class WebPage
     article=Article.new(title, body, author)
     @articles <<article
   end
+
+
+  def longest_articles
+    #longest_articles – returns an array of articles sorted by body length
+    articles.sort { |x,y| y.length <=> x.length }
+  end
+
+  def best_articles
+    #best_articles – returns an array of articles sorted by points
+    articles.sort { |x,y| y.points <=> x.points }
+  end
+
+  def worst_articles
+    #worst_articles – the same as above but reversed
+    articles.sort { |x,y| x.points <=> y.points }
+  end
+
+  def best_article
+    #best_article – returns article with the most points. Raise WebPage::NoArticlesFound exception if web page does not have any articles
+    raise WebPage::NoArticlesFound if articles.length==0
+    best_articles.first 
+  end
+
+  def worst_article
+    #worst_article – returns article with the least points. Raise WebPage::NoArticlesFound exception if web page does not have any articles
+      raise WebPage::NoArticlesFound if articles.length==0
+    worst_articles.first
+  end
+
+  def most_controversial_articles 
+    #most_controversial_articles – returns an array of articles sorted by number of votes.
+     articles.sort { |x,y| y.votes <=> x.votes }
+  end
+
+
+
+
 end
 

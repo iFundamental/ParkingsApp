@@ -91,9 +91,11 @@ class WebPage
 
   attr_reader :articles
 
+
   def initialize(dir_name = "/")
     @dir_name = dir_name
     @fs = ArticlesFileSystem.new(@dir_name)
+    @articles=Array.new
     load
   end
 
@@ -128,13 +130,13 @@ class WebPage
 
   def best_article
     #best_article – returns article with the most points. Raise WebPage::NoArticlesFound exception if web page does not have any articles
-    raise NoArticlesFound if articles.length == 0
+    raise NoArticlesFound if !(articles.length > 0)
     best_articles.first 
   end
 
   def worst_article
     #worst_article – returns article with the least points. Raise WebPage::NoArticlesFound exception if web page does not have any articles
-    raise WebPage::NoArticlesFound if articles.length == 0
+    raise NoArticlesFound if !(articles.length > 0)
     worst_articles.first
   end
 
@@ -144,15 +146,11 @@ class WebPage
   end
   def votes
     #returns the sum of votes from all articles
-    total_votes = 0
-    articles.each{|article| total_votes += article.votes}
-    total_votes
+    articles.map(&:votes).inject(0, &:+)
   end
   
   def authors
-    authors = Array.new
-    articles.each{|article| authors << article.author}
-    authors.uniq
+    articles.map{|article| article.author}.uniq
   end
 
   def authors_statistics
@@ -161,9 +159,12 @@ class WebPage
     author_stats
   end
 
+  def best_authors
+    authors_statistics.sort_by{|key, value| value}
+  end
+
   def best_author
-    authors = authors_statistics.sort_by{|key, value| value}
-    authors.last[0]
+    best_authors.last[0]
   end
   
   def search(query)

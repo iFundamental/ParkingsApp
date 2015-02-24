@@ -167,5 +167,9 @@ class WebPage
     authors = authors_statistics.sort_by{|key,value| value}
     authors.last[0]
   end
+  
+  def search(query)
+    articles.select { |article| article.contain?(query) }
+  end
 end
 

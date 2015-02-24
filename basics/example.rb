@@ -72,15 +72,13 @@ class ArticlesFileSystem
   def load
     articles = Array.new
     Dir.chdir("#{@dir_name}") 
-    Dir.glob("*.article").each do |filename|
-      File.open(filename, "r") do |file|
+    Dir.glob("*.article").each do |filename|    
         title = File.basename(filename, ".article").gsub("_", " ").capitalize
         data = File.read(filename).split("||")
         article = Article.new(title, data[3], data[0])
         article.likes = data[1].to_i
         article.dislikes = data[2].to_i
-        articles << article     
-      end      
+        articles << article          
     end
     articles
   end
@@ -91,16 +89,16 @@ class WebPage
   class NoArticlesFound < StandardError  
   end 
 
-
   attr_reader :articles
+
   def initialize(dir_name = "/")
     @dir_name = dir_name
     @fs = ArticlesFileSystem.new(@dir_name)
-    self.load
+    load
   end
 
   def load
-      @articles = @fs.load
+    @articles = @fs.load
   end
 
   def save

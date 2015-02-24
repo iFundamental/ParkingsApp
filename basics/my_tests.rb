@@ -58,14 +58,13 @@ class ArticleTest < Minitest::Test
     line400chrs = "400 " * 100
     line120chrs = "120 " * 30
     article = Article.new("Test title",line5chars + "\n" + line12chrs + "\n" + line80chrs + "\n" + line400chrs + "\n" + line120chrs, "The author")
-    longlines = [line400chrs, line120chrs]
+    longlines = [line80chrs, line400chrs, line120chrs]
     assert_equal(longlines,article.long_lines)
   end
 
   def test_truncate
     article = Article.new("Test title", "Test Body", "The author")
     assert_equal("T...", article.truncate(4))
-
   end
 
   def test_truncate_when_limit_is_longer_then_body

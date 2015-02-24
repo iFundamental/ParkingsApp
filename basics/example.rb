@@ -91,7 +91,6 @@ class WebPage
 
   attr_reader :articles
 
-
   def initialize(dir_name = "/")
     @dir_name = dir_name
     @fs = ArticlesFileSystem.new(@dir_name)
@@ -111,7 +110,6 @@ class WebPage
     article = Article.new(title, body, author)
     @articles << article
   end
-
 
   def longest_articles
     #longest_articles – returns an array of articles sorted by body length
@@ -150,7 +148,7 @@ class WebPage
   end
   
   def authors
-    articles.map{|article| article.author}.uniq
+    articles.map(&:author).uniq
   end
 
   def authors_statistics

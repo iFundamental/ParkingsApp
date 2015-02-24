@@ -2,7 +2,7 @@ class Article
   attr_accessor :likes, :dislikes
   attr_reader :title, :body, :author, :created_at
 
-  def initialize(title, body, author=nil)
+  def initialize(title, body, author = nil)
     @title = title
     @body = body
     @author = author
@@ -47,7 +47,7 @@ class Article
     if search_string.is_a?(String)
       return  !! body[search_string]
     elsif search_string.respond_to?(:match)
-      return search_string.match(body).length > 0     
+      return search_string.match(body).nil? != true  
     else
      return false
     end
@@ -130,13 +130,13 @@ class WebPage
 
   def best_article
     #best_article – returns article with the most points. Raise WebPage::NoArticlesFound exception if web page does not have any articles
-    raise WebPage::NoArticlesFound if articles.length==0
+    raise WebPage::NoArticlesFound if articles.length == 0
     best_articles.first 
   end
 
   def worst_article
     #worst_article – returns article with the least points. Raise WebPage::NoArticlesFound exception if web page does not have any articles
-    raise WebPage::NoArticlesFound if articles.length==0
+    raise WebPage::NoArticlesFound if articles.length == 0
     worst_articles.first
   end
 

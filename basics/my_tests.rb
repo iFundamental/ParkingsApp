@@ -1,5 +1,5 @@
 require 'minitest/autorun'
-require './broken_example'
+require './example'
 
 class ArticleTest < Minitest::Test
   def test_initialization
@@ -53,30 +53,54 @@ class ArticleTest < Minitest::Test
   def test_long_lines
     #returns array of lines greater 80 characters
     line5chars = "5" * 5
-    line12chrs = "10 " * 4
+    line12chrs = "12c" * 4
     line80chrs = "80 c" * 20
     line400chrs = "400 " * 100
     line120chrs = "120 " * 30
     article = Article.new("Test title",line5chars + "\n" + line12chrs + "\n" + line80chrs + "\n" + line400chrs + "\n" + line120chrs, "The author")
-    longlines= [line400chrs, line120chrs]
+    longlines = [line400chrs, line120chrs]
     assert_equal(longlines,article.long_lines)
   end
 
   def test_truncate
+    article = Article.new("Test title", "Test Body", "The author")
+    assert_equal("T...", article.truncate(4))
+
   end
 
   def test_truncate_when_limit_is_longer_then_body
+    article = Article.new("Test title", "Test Body", "The author")
+    assert_equal("Test Body", article.truncate(100))
   end
 
   def test_truncate_when_limit_is_same_as_body_length
+    article = Article.new("Test title", "Test Body", "The author")
+    assert_equal("Test Body", article.truncate(9))
   end
 
   def test_length
+    article = Article.new("Test title", "Test Body", "The author")
+    assert_equal(9, article.length)
   end
 
   def test_votes
+    article = Article.new("Test title", "Test Body", "The author")
+    assert_equal(0,article.votes)
+    article.dislike!
+    assert_equal(1,article.votes)
+    5.times{article.dislike!}
+    assert_equal(6, article.votes)
+    5.times{article.like!}
+    assert_equal(11, article.votes)
+    5.times{article.like!}
+    assert_equal(16, article.votes)
   end
 
   def test_contain
+    article = Article.new("Test title", "Test Body", "The author")
+    assert_equal(true, article.contain?(/^Test/))
+    assert_equal(false, article.contain?(/^Body/))
+    assert_equal(true, article.contain?("Test"))
+    assert_equal(false, article.contain?("Testing"))
   end
 end

@@ -32,7 +32,7 @@ class Article
   end
 
   def long_lines
-    body.lines.to_a.select{|line| line.length > 80}
+    body.lines.to_a.select { |line| line.length > 80 }
   end
 
   def truncate(limit)
@@ -57,28 +57,28 @@ end
 class ArticlesFileSystem
   def initialize(dir_name)
     @dir_name = dir_name
-  end 
+  end
 
   def save(articles)
     articles.each do |article|
-      filename = article.title.gsub(" ", "_").downcase << ".article"
-      filebody = article.author << "||" << article.likes.to_s << "||" << article.dislikes.to_s << "||" << article.body
+      filename = article.title.gsub(' ', '_').downcase << '.article'
+      filebody = article.author + '||' + article.likes.to_s + '||' + article.dislikes.to_s + '||' + article.body
       File.open("#{@dir_name}/#{filename}", 'w+') do |f|  
-       f.write filebody
-      end  
-    end 
+        f.write filebody
+      end
+    end
   end
 
   def load
-    articles = Array.new
+    articles = []
     Dir.chdir("#{@dir_name}") 
-    Dir.glob("*.article").each do |filename|    
-        title = File.basename(filename, ".article").gsub("_", " ").capitalize
-        data = File.read(filename).split("||")
-        article = Article.new(title, data[3], data[0])
-        article.likes = data[1].to_i
-        article.dislikes = data[2].to_i
-        articles << article          
+    Dir.glob('*.article').each do |filename|
+      title = File.basename(filename, '.article').gsub('_', ' ').capitalize
+      data = File.read(filename).split('||')
+      article = Article.new(title, data[3], data[0])
+      article.likes = data[1].to_i
+      article.dislikes = data[2].to_i
+      articles << article
     end
     articles
   end
@@ -86,15 +86,15 @@ end
 
 class WebPage
 
-  class NoArticlesFound < StandardError  
-  end 
+  class NoArticlesFound < StandardError
+  end
 
   attr_reader :articles
 
-  def initialize(dir_name = "/")
+  def initialize(dir_name = '/')
     @dir_name = dir_name
     @fs = ArticlesFileSystem.new(@dir_name)
-    @articles=Array.new
+    @articles = []
     load
   end
 
@@ -112,38 +112,31 @@ class WebPage
   end
 
   def longest_articles
-    #longest_articles – returns an array of articles sorted by body length
     articles.sort { |x, y| y.length <=> x.length }
   end
 
   def best_articles
-    #best_articles – returns an array of articles sorted by points
     articles.sort { |x, y| y.points <=> x.points }
   end
 
   def worst_articles
-    #worst_articles – the same as above but reversed
     articles.sort { |x, y| x.points <=> y.points }
   end
 
   def best_article
-    #best_article – returns article with the most points. Raise WebPage::NoArticlesFound exception if web page does not have any articles
-    raise NoArticlesFound if !(articles.length > 0)
-    best_articles.first 
+    raise NoArticlesFound unless articles.length > 0
+    best_articles.first
   end
 
   def worst_article
-    #worst_article – returns article with the least points. Raise WebPage::NoArticlesFound exception if web page does not have any articles
-    raise NoArticlesFound if !(articles.length > 0)
+    raise NoArticlesFound unless articles.length > 0
     worst_articles.first
   end
 
   def most_controversial_articles 
-    #most_controversial_articles – returns an array of articles sorted by number of votes.
-     articles.sort { |x, y| y.votes <=> x.votes }
+    articles.sort { |x, y| y.votes <=> x.votes }
   end
   def votes
-    #returns the sum of votes from all articles
     articles.map(&:votes).inject(0, &:+)
   end
   
@@ -153,12 +146,12 @@ class WebPage
 
   def authors_statistics
     author_stats = Hash.new(0)
-    articles.each{|article| author_stats[article.author] += 1}
+    articles.each { |article| author_stats[article.author] += 1 }
     author_stats
   end
 
   def best_authors
-    authors_statistics.sort_by{|key, value| value}
+    authors_statistics.sort_by { |key, value| value }
   end
 
   def best_author

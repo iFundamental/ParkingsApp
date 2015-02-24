@@ -113,22 +113,22 @@ class WebPage
 
   def longest_articles
     #longest_articles – returns an array of articles sorted by body length
-    articles.sort { |x,y| y.length <=> x.length }
+    articles.sort { |x, y| y.length <=> x.length }
   end
 
   def best_articles
     #best_articles – returns an array of articles sorted by points
-    articles.sort { |x,y| y.points <=> x.points }
+    articles.sort { |x, y| y.points <=> x.points }
   end
 
   def worst_articles
     #worst_articles – the same as above but reversed
-    articles.sort { |x,y| x.points <=> y.points }
+    articles.sort { |x, y| x.points <=> y.points }
   end
 
   def best_article
     #best_article – returns article with the most points. Raise WebPage::NoArticlesFound exception if web page does not have any articles
-    raise WebPage::NoArticlesFound if articles.length == 0
+    raise NoArticlesFound if articles.length == 0
     best_articles.first 
   end
 
@@ -140,7 +140,7 @@ class WebPage
 
   def most_controversial_articles 
     #most_controversial_articles – returns an array of articles sorted by number of votes.
-     articles.sort { |x,y| y.votes <=> x.votes }
+     articles.sort { |x, y| y.votes <=> x.votes }
   end
   def votes
     #returns the sum of votes from all articles
@@ -162,7 +162,7 @@ class WebPage
   end
 
   def best_author
-    authors = authors_statistics.sort_by{|key,value| value}
+    authors = authors_statistics.sort_by{|key, value| value}
     authors.last[0]
   end
   

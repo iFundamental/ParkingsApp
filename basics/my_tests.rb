@@ -1,5 +1,5 @@
 require 'minitest/autorun'
-require './example'
+require './broken_example'
 
 class ArticleTest < Minitest::Test
   def test_initialization
@@ -102,5 +102,52 @@ class ArticleTest < Minitest::Test
     assert_equal(false, article.contain?(/^Body/))
     assert_equal(true, article.contain?("Test"))
     assert_equal(false, article.contain?("Testing"))
+  end
+end
+
+class ArticlesFileSystemTest < Minitest::Test
+  def test_saving
+    articles = Array.new
+    a1 =  Article.new("The happy programmer", "Once apon a time there was a happy programmer", "Sally Mclean")
+    a1.likes = 3, a1.dislikes=5
+    articles << a1
+    a2 =  Article.new("The rainy day", "Today it is raining and cold", "Greg Smith")
+    a2.likes=10, a2.dislikes=4
+    articles << a2
+
+    fs = ArticlesFileSystem.new("")
+    fs.save(articles)
+
+    assert_equal(true, File.file?("/the_happy_programmer.article"), "Expecting the file the_happy_programmer.article to exist")
+    data = File.read("/the_happy_programmer.article")   
+    assert_equal("Sally Mclean||3||5||Once apon a time there was a happy programmer", data)   
+  end
+
+  def test_loading
+    #article 1
+    filename = "the_happy_programmer.article"
+    filebody = "Sally Mclean||3||5||Once apon a time there was a happy programmer"
+    File.open("/#{filename}", 'w+') do |f|  
+      f.write filebody
+    end 
+    #article 2
+    filename = "the_rainy_day.article"
+    filebody = "Greg Smith||10||4||Today it is raining and cold"
+    File.open("/#{filename}", 'w+') do |f|  
+      f.write filebody
+    end  
+    fs = ArticlesFileSystem.new("")
+    articles = fs.load
+    a1 = articles[0]
+    a2 = articles[1]
+    assert_equal("The happy programmer", a1.title)
+    assert_equal(3, a1.likes)
+    assert_equal(5, a1.dislikes)
+    assert_equal("Once apon a time there was a happy programmer", a1.body)
+
+    assert_equal("The rainy day", a2.title)
+    assert_equal(10, a2.likes)
+    assert_equal(4, a2.dislikes)
+    assert_equal("Today it is raining and cold", a2.body)
   end
 end

@@ -114,11 +114,11 @@ class ArticlesFileSystemTest < Minitest::Test
     a2.likes = 10, a2.dislikes = 4
     articles << a2
 
-    fs = ArticlesFileSystem.new('')
+    fs = ArticlesFileSystem.new('.')
     fs.save(articles)
 
-    assert_equal(true, File.file?('/the_happy_programmer.article'), 'Expecting the file the_happy_programmer.article to exist')
-    data = File.read('/the_happy_programmer.article')
+    assert_equal(true, File.file?('the_happy_programmer.article'), 'Expecting the file the_happy_programmer.article to exist')
+    data = File.read('the_happy_programmer.article')
     assert_equal('Sally Mclean||3||5||Once apon a time there was a happy programmer', data)
   end
 
@@ -126,16 +126,16 @@ class ArticlesFileSystemTest < Minitest::Test
     # article 1
     filename = 'the_happy_programmer.article'
     filebody = 'Sally Mclean||3||5||Once apon a time there was a happy programmer'
-    File.open("/#{ filename }", 'w+') do |f|  
+    File.open("#{filename}", 'w+') do |f|  
       f.write filebody
     end
     # article 2
     filename = 'the_rainy_day.article'
     filebody = 'Greg Smith||10||4||Today it is raining and cold'
-    File.open("/#{ filename }", 'w+') do |f|  
+    File.open("#{filename}", 'w+') do |f|  
       f.write filebody
     end
-    fs = ArticlesFileSystem.new('')
+    fs = ArticlesFileSystem.new('.')
     articles = fs.load
     a1 = articles[0]
     a2 = articles[1]

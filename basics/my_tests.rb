@@ -149,4 +149,9 @@ class ArticlesFileSystemTest < Minitest::Test
     assert_equal(4, a2.dislikes)
     assert_equal('Today it is raining and cold', a2.body)
   end
+    MiniTest::Unit.after_tests do 
+    File.delete('the_happy_programmer.article')
+    File.delete('the_rainy_day.article')
+  end
 end
+

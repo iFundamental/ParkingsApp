@@ -176,14 +176,26 @@ end
 
 class WebPageTest < Minitest::Test
   def test_new_without_anything_to_load
-    a1 = WebPageTest.new()
-    assert_equal(0, a1.articles.length)
+    @a1 = WebPage.new('.')
+    puts @a1.articles.to_s
+    assert_equal(true, @a1.articles.empty?, msg = nil)
   end
 
   def test_new_article
+    @a1 = WebPage.new('.')
+    @a1.new_article('Test Title', 'Test Body', 'Test Author')
+    assert_equal('Test Title', @a1.articles[0].title)
   end
 
-  def test_longest_article
+  def test_longest_articles
+    @a1 = WebPage.new('.')
+    @a1.articles << @a1.new_article('Mid Size', 'middle size', 'Test Author')
+    @a1.articles << @a1.new_article('Longest Article', 'This is a very long Article, longer that all the Others', 'Test Author')
+    @a1.articles << @a1.new_article('Shortest Article', 'Short', 'Test Author')
+    
+    assert_equal('Longest Article', @a1.longest_articles.first.title)
+    assert_equal('Mid Size', @a1.longest_articles[1].title)
+    assert_equal('Shortest Article', @a1.longest_articles.last.title)
   end
 
   def test_best_articles

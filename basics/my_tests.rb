@@ -95,7 +95,7 @@ class ArticleTest < Minitest::Test
     assert_equal(0, article.votes)
 
     article.dislike!
-    assert_equal(1, article.votes
+    assert_equal(1, article.votes)
 
     5.times { article.dislike! }
     assert_equal(6, article.votes)
@@ -157,7 +157,7 @@ class ArticlesFileSystemTest < Minitest::Test
 
     a1 = articles[0]
     a2 = articles[1]
-    
+
     assert_equal('The happy programmer', a1.title)
     assert_equal(3, a1.likes)
     assert_equal(5, a1.dislikes)
@@ -168,9 +168,58 @@ class ArticlesFileSystemTest < Minitest::Test
     assert_equal(4, a2.dislikes)
     assert_equal('Today it is raining and cold', a2.body)
   end
-    MiniTest::Unit.after_tests do 
+  MiniTest::Unit.after_tests do 
     File.delete('the_happy_programmer.article')
     File.delete('the_rainy_day.article')
+  end
+end
+
+class WebPageTest < Minitest::Test
+  def test_new_without_anything_to_load
+    a1 = WebPageTest.new()
+    assert_equal(0, a1.articles.length)
+  end
+
+  def test_new_article
+  end
+
+  def test_longest_article
+  end
+
+  def test_best_articles
+  end
+
+  def test_best_article
+  end
+
+  def test_best_article_exception_when_no_articles_can_be_found
+  end
+
+  def test_worst_articles
+  end
+
+  def test_worst_article
+  end
+
+  def test_worst_article_exception_when_no_articles_can_be_found
+  end
+
+  def test_most_controversial_articles
+  end
+
+  def test_votes
+  end
+
+  def test_authors
+  end
+
+  def test_authors_statistics
+  end
+
+  def test_best_author
+  end
+
+  def test_search
   end
 end
 

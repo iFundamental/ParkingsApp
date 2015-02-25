@@ -17,10 +17,17 @@ class ParkingTest < ActiveSupport::TestCase
  test "kind should be valid value" do
     p = Parking.new(hour_price: 3.4, day_price: 34, kind: 'invalid value')
     assert p.invalid?
-    @valid_values =['outdoor', 'indoor', 'private', 'street']
-    @valid_values.each do |value|
-      p.kind=value
-      assert p.valid?, value + ' should be a valid value.'
-    end
+
+    p.kind = 'outdoor'
+    assert p.valid?, 'outdoor should be a valid value.'
+
+    p.kind = 'indoor'
+    assert p.valid?, 'indoor should be a valid value.'
+
+    p.kind = 'private'
+    assert p.valid?, 'private should be a valid value.'
+
+    p.kind = 'street'
+    assert p.valid?, 'street should be a valid value.'
   end
 end

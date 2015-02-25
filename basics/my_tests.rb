@@ -22,8 +22,10 @@ class ArticleTest < Minitest::Test
   def test_liking
     article = Article.new('Test title', 'Test Body', 'The author')
     assert_equal(0, article.likes)
+
     article.like!
     assert_equal(1, article.likes)
+
     5.times { article.like! }
     assert_equal(6, article.likes)
   end
@@ -31,8 +33,10 @@ class ArticleTest < Minitest::Test
   def test_disliking
     article = Article.new('Test title', 'Test Body', 'The author')
     assert_equal(0, article.dislikes)
+
     article.dislike!
     assert_equal(1, article.dislikes)
+
     5.times { article.dislike! }
     assert_equal(6, article.dislikes)
   end
@@ -40,12 +44,16 @@ class ArticleTest < Minitest::Test
   def test_points
     article = Article.new('Test title', 'Test Body', 'The author')
     assert_equal(0, article.points)
+
     article.dislike!
     assert_equal(-1, article.points)
+
     5.times { article.dislike! }
     assert_equal(-6, article.points)
+
     5.times { article.like! }
     assert_equal(-1, article.points)
+
     5.times { article.like! }
     assert_equal(4, article.points)
   end
@@ -85,12 +93,16 @@ class ArticleTest < Minitest::Test
   def test_votes
     article = Article.new('Test title', 'Test Body', 'The author')
     assert_equal(0, article.votes)
+
     article.dislike!
-    assert_equal(1, article.votes)
+    assert_equal(1, article.votes
+
     5.times { article.dislike! }
     assert_equal(6, article.votes)
+
     5.times { article.like! }
     assert_equal(11, article.votes)
+
     5.times { article.like! }
     assert_equal(16, article.votes)
   end
@@ -107,9 +119,11 @@ end
 class ArticlesFileSystemTest < Minitest::Test
   def test_saving
     articles = []
+
     a1 =  Article.new('The happy programmer', 'Once apon a time there was a happy programmer', 'Sally Mclean')
     a1.likes = 3, a1.dislikes = 5
     articles << a1
+
     a2 =  Article.new('The rainy day', 'Today it is raining and cold', 'Greg Smith')
     a2.likes = 10, a2.dislikes = 4
     articles << a2
@@ -118,6 +132,7 @@ class ArticlesFileSystemTest < Minitest::Test
     fs.save(articles)
 
     assert_equal(true, File.file?('the_happy_programmer.article'), 'Expecting the file the_happy_programmer.article to exist')
+
     data = File.read('the_happy_programmer.article')
     assert_equal('Sally Mclean||3||5||Once apon a time there was a happy programmer', data)
   end
@@ -129,16 +144,20 @@ class ArticlesFileSystemTest < Minitest::Test
     File.open("#{filename}", 'w+') do |f|  
       f.write filebody
     end
+
     # article 2
     filename = 'the_rainy_day.article'
     filebody = 'Greg Smith||10||4||Today it is raining and cold'
     File.open("#{filename}", 'w+') do |f|  
       f.write filebody
     end
+
     fs = ArticlesFileSystem.new('.')
     articles = fs.load
+
     a1 = articles[0]
     a2 = articles[1]
+    
     assert_equal('The happy programmer', a1.title)
     assert_equal(3, a1.likes)
     assert_equal(5, a1.dislikes)

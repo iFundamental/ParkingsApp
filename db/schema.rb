@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150225113701) do
+ActiveRecord::Schema.define(version: 20150225115757) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "city"
@@ -27,6 +27,15 @@ ActiveRecord::Schema.define(version: 20150225113701) do
     t.string   "registration_number"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
+  end
+
+  create_table "parkings", force: :cascade do |t|
+    t.string  "kind"
+    t.decimal "hour_price"
+    t.decimal "day_price"
+    t.integer "places"
+    t.integer "owner_id"
+    t.integer "address_id"
   end
 
   create_table "people", force: :cascade do |t|

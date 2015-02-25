@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150225122339) do
+ActiveRecord::Schema.define(version: 20150225172909) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "city"
@@ -29,6 +29,8 @@ ActiveRecord::Schema.define(version: 20150225122339) do
     t.datetime "updated_at",          null: false
   end
 
+  add_index "cars", ["owner_id"], name: "index_cars_on_owner_id"
+
   create_table "parkings", force: :cascade do |t|
     t.string  "kind"
     t.decimal "hour_price"
@@ -37,6 +39,9 @@ ActiveRecord::Schema.define(version: 20150225122339) do
     t.integer "owner_id"
     t.integer "address_id"
   end
+
+  add_index "parkings", ["address_id"], name: "index_parkings_on_address_id"
+  add_index "parkings", ["owner_id"], name: "index_parkings_on_owner_id"
 
   create_table "people", force: :cascade do |t|
     t.string   "first_name"
@@ -54,5 +59,8 @@ ActiveRecord::Schema.define(version: 20150225122339) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "place_rents", ["car_id"], name: "index_place_rents_on_car_id"
+  add_index "place_rents", ["parking_id"], name: "index_place_rents_on_parking_id"
 
 end

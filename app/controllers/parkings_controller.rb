@@ -7,4 +7,24 @@ class ParkingsController < ApplicationController
   	@parking = Parking.find(params[:id])
 
   end
+
+  def new
+  	@parking = Parking.new
+  end
+
+  def create
+  	@parking = Parking.new(parking_params)
+  	if @parking.save
+    redirect_to @parking
+  else
+    render 'new'
+  end
+  	
+  end
+
+  private
+
+  def parking_params
+    params.require(:parking).permit(:kind, :places, :hour_price, :day_price, :text)
+  end
 end

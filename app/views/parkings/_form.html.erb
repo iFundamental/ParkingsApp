@@ -1,0 +1,38 @@
+<%= form_for :parking, url: parkings_path do |f| %>
+  <% if @parking.errors.any? %>
+    <div>
+      <h2>
+        <%= pluralize(@parking.errors.count, "error") %> errors!
+      </h2>
+      <ul>
+        <% @parking.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <p>
+    <%= f.label :kind %><br>
+    <%= f.text_field :kind %>
+  </p>
+ 
+  <p>
+    <%= f.label :places %><br>
+    <%= f.text_field :places %>
+  </p>
+
+   <p>
+    <%= f.label :hour_price %><br>
+    <%= f.text_field :hour_price %>
+  </p>
+
+   <p>
+    <%= f.label :day_price %><br>
+    <%= f.text_field :day_price %>
+  </p>
+ 
+  <p>
+    <%= f.submit %>
+  </p>
+
+<% end %>

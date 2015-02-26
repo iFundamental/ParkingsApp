@@ -18,19 +18,19 @@
  
   <p>
     <%= f.label :places %><br>
-    <%= f.text_field :places %>
+    <%= f.number_field :places %>
   </p>
 
    <p>
     <%= f.label :hour_price %><br>
-    <%= f.text_field :hour_price %>
+    <%= f.number_field :hour_price, step: 0.5 %>
   </p>
 
    <p>
     <%= f.label :day_price %><br>
-    <%= f.text_field :day_price %>
+    <%= f.number_field :day_price, step: 0.5 %>
   </p>
- 
+  
   <p>
     <%= f.submit %>
   </p>

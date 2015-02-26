@@ -1,8 +1,8 @@
 <h1>View Parking Details</h1>
 <p>Kind of Parking: <%= @parking.kind %></p>
 <p>Places: <%= @parking.places %></p>
-<p>Hourly Price: number_to_currency(parking.hour_price, unit:"€")</p>
-<p>Daily Price: number_to_currency(parking.day_price, unit:"€") </p>
+<p>Hourly Price: <%= number_to_currency(@parking.hour_price, unit:"€") %></p>
+<p>Daily Price: <%= number_to_currency(@parking.day_price, unit:"€") %></p>
  <% if @parking.address.present? %>
   <h2>Parking Address</h2>
   <p>City: <%= @parking.address.city %></p>

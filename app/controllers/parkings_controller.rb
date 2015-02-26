@@ -16,7 +16,7 @@ class ParkingsController < ApplicationController
     if @parking.save
       redirect_to @parking
     else
-      render 'new'
+      redirect_to action: :new
     end
   end
 
@@ -26,8 +26,7 @@ class ParkingsController < ApplicationController
 
   def update
     @parking = Parking.find(params[:id])
-    @parking.update(parking_params)
-    if @parking.save
+    if @parking.update(parking_params)
       redirect_to @parking
     else
       render 'edit'

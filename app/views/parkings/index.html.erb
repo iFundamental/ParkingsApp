@@ -1,0 +1,6 @@
+<h1>Parkings</h1>
+<ul>
+<% @parkings.each do |parking| %>
+  <li>City: <%= parking.address.city %>, Places: <%= parking.places %>, Hourly Price: <%= number_to_currency(parking.hour_price, unit:"€") %>, Daily Price: <%= number_to_currency(parking.day_price, unit:"€") %><%= link_to 'Show', parking_path(parking) %><%= link_to 'Edit', edit_parking_path(parking) %><%= link_to 'Delete', parking_path(parking),  method: :delete  %><li>
+<% end %>
+</ul>

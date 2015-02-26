@@ -1,9 +1,24 @@
 Rails.application.routes.draw do
+    # You can have the root of your site routed with "root"
+  root 'parkings#index'
+
+  # get 'parkings/index' => 'parkings#index'
+  # get 'parkings/new' => 'parkings#new'
+  # post 'parkings' => 'parkings#create'
+  # get 'parkings/:id' => 'parkings#show'
+  # get 'parkings/:id/edit' => 'parkings#edit'
+  # delete 'parkings/:id' => 'parkings#destroy'
+  # patch 'parkings/:id' => 'parkings#update'
+  # put 'parkings/:id' => 'parkings#update'
+
+  resources :parkings
+
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

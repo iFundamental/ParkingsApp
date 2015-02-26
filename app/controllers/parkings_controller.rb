@@ -20,12 +20,6 @@ class ParkingsController < ApplicationController
     end
   end
 
-  private
-
-  def parking_params
-    params.require(:parking).permit(:kind, :places, :hour_price, :day_price, :text)
-  end
-
   def edit
     @parking = Parking.find(params[:id])
   end
@@ -36,7 +30,19 @@ class ParkingsController < ApplicationController
     if @parking.save
       redirect_to @parking
     else
-      render 'new'
+      render 'edit'
     end
   end
+
+  def destroy
+    Parking.find(params[:id]).destroy
+    redirect_to action: :index
+  end
+
+  private
+
+  def parking_params
+    params.require(:parking).permit(:kind, :places, :hour_price, :day_price, :text)
+  end
+
 end

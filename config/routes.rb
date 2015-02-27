@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   # put 'parkings/:id' => 'parkings#update'
 
   resources :parkings
+  resources :cars
 
 
 

@@ -25,29 +25,20 @@ class CarsController < ApplicationController
   # POST /cars.json
   def create
     @car = current_person.cars.new(car_params)
-
-    respond_to do |format|
-      if @car.save
-        format.html { redirect_to @car, notice: 'Car was successfully created.' }
-        format.json { render :show, status: :created, location: @car }
-      else
-        format.html { render :new }
-        format.json { render json: @car.errors, status: :unprocessable_entity }
-      end
+    if @car.save
+      redirect_to @car, notice: 'Car was successfully created.'
+    else
+      render :new
     end
   end
 
   # PATCH/PUT /cars/1
   # PATCH/PUT /cars/1.json
   def update
-    respond_to do |format|
-      if @car.update(car_params)
-        format.html { redirect_to @car, notice: 'Car was successfully updated.' }
-        format.json { render :show, status: :ok, location: @car }
-      else
-        format.html { render :edit }
-        format.json { render json: @car.errors, status: :unprocessable_entity }
-      end
+    if @car.update(car_params)
+      redirect_to @car, notice: 'Car was successfully updated.'
+    else
+      render :edit
     end
   end
 
@@ -55,10 +46,8 @@ class CarsController < ApplicationController
   # DELETE /cars/1.json
   def destroy
     @car.destroy
-    respond_to do |format|
-      format.html { redirect_to cars_url, notice: 'Car was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to cars_url, notice: 'Car was successfully destroyed.'
+    head :no_content
   end
 
   private

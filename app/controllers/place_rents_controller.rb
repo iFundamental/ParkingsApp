@@ -29,28 +29,20 @@ class PlaceRentsController < ApplicationController
     @place_rent = PlaceRent.new(place_rent_params)
     @place_rent.car = Car.find(place_rent_params[:car_id])
     @place_rent.parking = Parking.find(params[:parking_id])
-    respond_to do |format|
-      if @place_rent.save
-        format.html { redirect_to @place_rent, notice: 'Place rent was successfully created.' }
-        format.json { render :show, status: :created, location: @place_rent }
-      else
-        format.html { render :new }
-        format.json { render json: @place_rent.errors, status: :unprocessable_entity }
-      end
+    if @place_rent.save
+      redirect_to @place_rent, notice: 'Place rent was successfully created.'
+    else
+      render :new
     end
   end
 
   # PATCH/PUT parkings/:id/place_rents/1
   # PATCH/PUT parkings/:id/place_rents/1.json
   def update
-    respond_to do |format|
-      if @place_rent.update(place_rent_params)
-        format.html { redirect_to @place_rent, notice: 'Place rent was successfully updated.' }
-        format.json { render :show, status: :ok, location: @place_rent }
-      else
-        format.html { render :edit }
-        format.json { render json: @place_rent.errors, status: :unprocessable_entity }
-      end
+    if @place_rent.update(place_rent_params)
+      redirect_to @place_rent, notice: 'Place rent was successfully updated.'
+    else
+      render :edit
     end
   end
 
@@ -58,10 +50,8 @@ class PlaceRentsController < ApplicationController
   # DELETE parkings/:id/place_rents/1.json
   def destroy
     @place_rent.destroy
-    respond_to do |format|
-      format.html { redirect_to place_rents_url, notice: 'Place rent was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to place_rents_url, notice: 'Place rent was successfully destroyed.'
+    head :no_content
   end
 
   private

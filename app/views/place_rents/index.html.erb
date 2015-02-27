@@ -16,14 +16,14 @@
       <tr>
         <td><%= place_rent.starts_at %></td>
         <td><%= place_rent.ends_at %></td>
-        <td><%= link_to 'Show', place_rent %></td>
-        <td><%= link_to 'Show Car', cars(place_rent.cars.id)  %></td>
-        <td><%= link_to 'Show Parking', parkings(place_rent.parkings.id)  %></td>
+        <td><%= link_to 'Show', place_rent_path(place_rent) %></td>
+        <td><%= link_to 'Show Car', car_path(place_rent.car.id)  %></td>
+        <td><%= link_to 'Show Parking', parking_path(place_rent.parking.id)  %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 <br>
-<%= link_to 'Rent a place', parkings_place_rents_new_path %>
+
 
 

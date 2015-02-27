@@ -15,6 +15,7 @@ class PlaceRentsController < ApplicationController
   # GET /place_rents/new
   def new
     @place_rent = PlaceRent.new
+    # @place_rent.parking = Parking.find(params[:parking_id])
     @cars = current_person.cars.all
   end
 
@@ -27,6 +28,7 @@ class PlaceRentsController < ApplicationController
   def create
     @place_rent = PlaceRent.new(place_rent_params)
     @place_rent.car = Car.find(place_rent_params[:car_id])
+    @place_rent.parking = Parking.find(params[:parking_id])
     respond_to do |format|
       if @place_rent.save
         format.html { redirect_to @place_rent, notice: 'Place rent was successfully created.' }

@@ -11,10 +11,18 @@ Rails.application.routes.draw do
   # patch 'parkings/:id' => 'parkings#update'
   # put 'parkings/:id' => 'parkings#update'
 
-  resources :parkings
+  resources :parkings do
+    resources :place_rents, only: [:new, :create]
+  end
+  resources :place_rents, only: [:show, :index, :destroy]
+
   resources :cars
-  get 'place_rents' => 'place_rents#index'
-  get 'place_rents/:id' => 'place_rents#show'
+
+
+  # get 'place_rents' => 'place_rents#index'
+  # get 'place_rents/:id' => 'place_rents#show'
+  # get 'parkings/:id/place_rents/new' => 'place_rents#new'
+  # post 'parkings/place_rents' => 'place_rents#create'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

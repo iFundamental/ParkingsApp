@@ -9,9 +9,11 @@
   , Places: <%= parking.places %>
   , Hourly Price: <%= number_to_currency(parking.hour_price, unit:"€") %>
   , Daily Price: <%= number_to_currency(parking.day_price, unit:"€") %>
+  
   <%= link_to 'Show', parking %>
   <%= link_to 'Edit', edit_parking_path(parking) %>
   <%= link_to 'Delete', parking,  method: :delete  %>
+  <%= link_to 'Rent', new_parking_place_rent_path(parking) %>
   </li>
 <% end %>
 </ul>

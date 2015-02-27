@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-    # You can have the root of your site routed with "root"
+  # You can have the root of your site routed with "root"
   root 'parkings#index'
 
-  # get 'parkings/index' => 'parkings#index'
+  # get 'parkings/' => 'parkings#index'
   # get 'parkings/new' => 'parkings#new'
   # post 'parkings' => 'parkings#create'
   # get 'parkings/:id' => 'parkings#show'
@@ -13,7 +13,8 @@ Rails.application.routes.draw do
 
   resources :parkings
   resources :cars
-
+  get 'place_rents' => 'place_rents#index'
+  get 'place_rents/:id' => 'place_rents#show'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

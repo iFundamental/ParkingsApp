@@ -1,0 +1,25 @@
+<%= form_for(@place_rent) do |f| %>
+  <% if @place_rent.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@place_rent.errors.count, "error") %> prohibited this place_rent from being saved:</h2>
+
+      <ul>
+      <% @place_rent.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :startat %><br>
+    <%= f.text_field :startat %>
+  </div>
+  <div class="field">
+    <%= f.label :endat %><br>
+    <%= f.text_field :endat %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

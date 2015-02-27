@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Startat:</strong>
+  <%= @place_rent.startat %>
+</p>
+
+<p>
+  <strong>Endat:</strong>
+  <%= @place_rent.endat %>
+</p>
+
+<%= link_to 'Edit', edit_place_rent_path(@place_rent) %> |
+<%= link_to 'Back', place_rents_path %>

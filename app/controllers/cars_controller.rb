@@ -46,7 +46,7 @@ class CarsController < ApplicationController
   # DELETE /cars/1.json
   def destroy
     @car.destroy
-    redirect_to cars_url, notice: 'Car was successfully destroyed.'
+    redirect_to cars_url, notice: 'Car was successfully deleted.'
     head :no_content
   end
 

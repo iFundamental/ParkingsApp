@@ -50,7 +50,7 @@ class PlaceRentsController < ApplicationController
   # DELETE parkings/:id/place_rents/1.json
   def destroy
     @place_rent.destroy
-    redirect_to place_rents_url, notice: 'Place rent was successfully destroyed.'
+    redirect_to place_rents_url, notice: 'Place rent was successfully deleted.'
     head :no_content
   end
 

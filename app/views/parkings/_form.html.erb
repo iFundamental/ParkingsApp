@@ -33,15 +33,15 @@
 
   <%= f.fields_for :address do |ff| %>
     <p>
-      <%= ff.label :city %>
+      <%= ff.label :city %><br>
       <%= ff.text_field :city %>
     </p>
      <p>
-      <%= ff.label :street %>
+      <%= ff.label :street %><br>
       <%= ff.text_field :street %>
     </p>
      <p>
-      <%= ff.label :zip_code  %>
+      <%= ff.label :zip_code  %><br>
       <%= ff.text_field :zip_code %>
     </p>
   <% end %>

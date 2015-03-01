@@ -13,15 +13,15 @@
 
   <div class="field">
     <%= f.label :starts_at %><br>
-    <%= f.date_field :starts_at %>
+   <%= f.datetime_select :starts_at, :ampm => true %>
   </div>
   <div class="field">
     <%= f.label :ends_at %><br>
-    <%= f.date_field :ends_at %>
+    <%= f.datetime_select :ends_at, :ampm => true %>
   </div>
   <div class="field">
     <%= f.label :car_id %><br>
-    <%= f.collection_select(:car_id, current_person.cars, :id, :model) %>
+    <%= f.collection_select(:car_id, current_person.cars, :id, :car_model_registration) %>
   </div>
   <div class="actions">
     <%= f.submit %>

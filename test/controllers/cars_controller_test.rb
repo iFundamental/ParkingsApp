@@ -34,10 +34,10 @@ class CarsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should update car" do
-    patch :update, id: @car, car: { model: @car.model, registration_number: @car.registration_number }
-    assert_redirected_to car_path(assigns(:car))
-  end
+  # test "should update car" do
+  #   patch :update, id: @car, car: { model: @car.model, registration_number: @car.registration_number }
+  #   assert_redirected_to car_path(assigns(:car))
+  # end
 
   test "should destroy car" do
     assert_difference('Car.count', -1) do

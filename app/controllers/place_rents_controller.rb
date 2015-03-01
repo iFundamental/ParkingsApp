@@ -51,7 +51,6 @@ class PlaceRentsController < ApplicationController
   def destroy
     @place_rent.destroy
     redirect_to place_rents_url, notice: 'Place rent was successfully deleted.'
-    head :no_content
   end
 
   private

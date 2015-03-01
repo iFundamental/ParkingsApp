@@ -2,8 +2,8 @@
 
 one:
   owner_id: 1
-  model: MyString
-  registration_number: MyString
+  model: 'Honda'
+  registration_number: '44-432'
 
 two:
   owner_id: 1

@@ -15,12 +15,16 @@ class PlaceRentsTest < ActionDispatch::IntegrationTest
       select('July', from: 'place_rent_ends_at_2i')
       select('20', from: 'place_rent_ends_at_3i')
       select('01 PM', from: 'place_rent_ends_at_4i')
-      # select('00', from: 'place_rent_sends_at_5i')
 
       select('Honda - 44-432', from: 'Car')
 
       click_button 'Create Place rent'
     end
     assert has_content?('You have successfully rented the place.')
+  end
+
+  test "price is displayed on the place rents list" do
+    visit parkings_url
+    assert has_content?('price')
   end
 end

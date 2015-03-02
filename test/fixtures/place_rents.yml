@@ -7,9 +7,17 @@ one:
   ends_at: 2015-02-25 13:23:39
   price: 9.99
 
-two:
-  parking_id: one
-  car_id: one
-  starts_at: 2015-04-25 13:23:39
-  ends_at: 2015-05-25 13:23:39
-  price: 9.99
+calc_test_1:
+  parking: parking_calc_test
+  car: one
+  starts_at: 2015-04-01 0:00:00
+  ends_at: 2015-04-07 23:59:59
+  price: 0
+
+calc_test_2:
+  parking: parking_calc_test
+  car: one
+  starts_at: 2015-04-01 0:00:00
+  ends_at: 2015-04-08 3:00:00
+  price: 0
+

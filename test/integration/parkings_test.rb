@@ -10,7 +10,7 @@ class ParkingsTest < ActionDispatch::IntegrationTest
     visit parkings_url
     click_link('Show', match: :first)
     assert has_content? 'View Parking Details'
-    assert has_content? '34.5'
+    assert has_content? 'indoor'
   end
 
   test "user adds a new parking" do

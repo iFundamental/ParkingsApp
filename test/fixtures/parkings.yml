@@ -2,7 +2,15 @@
 one:
   kind: indoor
   day_price: 34.5
-  hour_price: 45.5
+  hour_price: 5.5
   places: 5
   address: one
+  owner: sally
+
+parking_calc_test:
+  kind: indoor
+  day_price: 7.5
+  hour_price: 1.5
+  places: 10
+  address: two
   owner: sally

@@ -10,8 +10,8 @@ class ParkingTest < ActiveSupport::TestCase
  test "should have the necessary numeric validators" do
     p = Parking.new(hour_price: 'sometext', day_price: 'moretext')
     assert p.invalid?
-    assert_equal ["is not a number"], p.errors.messages[:hour_price]
-    assert_equal ["is not a number"], p.errors.messages[:day_price]
+    assert_equal ['is not a number'], p.errors.messages[:hour_price]
+    assert_equal ['is not a number'], p.errors.messages[:day_price]
   end
 
  test "kind should be valid value" do

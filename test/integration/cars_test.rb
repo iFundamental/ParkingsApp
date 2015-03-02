@@ -10,7 +10,7 @@ class CarsTest < ActionDispatch::IntegrationTest
     visit cars_url
     click_link('Show', match: :first)
     assert has_content? 'View Car Details'
-    assert has_content? 'Honda' || 
+    assert has_content? 'Honda' 
   end
 
   test "user adds a new car" do

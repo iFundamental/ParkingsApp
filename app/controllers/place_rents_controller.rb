@@ -30,7 +30,7 @@ class PlaceRentsController < ApplicationController
     @place_rent.car = Car.find(place_rent_params[:car_id])
     @place_rent.parking = Parking.find(params[:parking_id])
     if @place_rent.save
-      redirect_to @place_rent, notice: 'Place rent was successfully created.'
+      redirect_to @place_rent, notice: 'You have successfully rented the place.'
     else
       render :new
     end

@@ -21,3 +21,18 @@ calc_test_2:
   ends_at: 2015-04-08 3:00:00
   price: 0
 
+calc_test_3:
+  parking: parking_calc_test
+  car: one
+  starts_at: 2015-04-01 22:00:00
+  ends_at: 2015-04-07 23:59:59
+  price: 0
+
+
+calc_test_4:
+  parking: parking_calc_test
+  car: one
+  starts_at: 2015-04-01 22:01:00
+  ends_at: 2015-04-07 4:30:00
+  price: 0
+

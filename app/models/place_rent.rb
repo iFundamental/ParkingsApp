@@ -7,11 +7,17 @@ class PlaceRent < ActiveRecord::Base
   
 
   def calculate_price
-    start_d = starts_at.end_of_minute
-    end_d = ends_at.end_of_minute
+
+    start_d = starts_at.beginning_of_hour
+    end_d = ends_at
     day_p = (parking.day_price).round(2)
     hour_p = (parking.hour_price).round(2)
+
+    unless end_d == end_d.beginning_of_hour
+      end_d = (end_d + 1.hour).at_beginning_of_hour
+    end
     
+
     if end_d.to_date == start_d.to_date
       (((end_d - start_d) / 1.hour).round) * parkng.hour_price
     else

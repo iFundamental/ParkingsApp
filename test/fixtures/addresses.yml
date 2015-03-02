@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  city: 'Melbourne'
-  street: 'Anthony'
-  zip_code: '33=333'
+  city: Perth
+  street: Anthony
+  zip_code: 33-333
 
 two:
-  city: 
-  street: 
-  zip_code: MyString
+  city: Berlin
+  street: karlmarxstr
+  zip_code: 43-456

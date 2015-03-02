@@ -28,7 +28,7 @@ class ParkingsController < ApplicationController
   def update
     @parking = Parking.find(params[:id])
     if @parking.update(parking_params)
-      redirect_to @parking, notice: 'Car was successfully updated.'
+      redirect_to @parking, notice: 'Parking was successfully updated.'
     else
       render :edit
     end
@@ -36,7 +36,7 @@ class ParkingsController < ApplicationController
 
   def destroy
     Parking.find(params[:id]).destroy
-    redirect_to action: :index, notice: 'Car was successfully deleted.'
+    redirect_to action: :index, notice: 'Parking was successfully deleted.'
   end
 
   private

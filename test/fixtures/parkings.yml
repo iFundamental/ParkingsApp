@@ -1,0 +1,8 @@
+
+one:
+  kind: indoor
+  day_price: 34.5
+  hour_price: 45.5
+  places: 5
+  address: one
+  owner: sally

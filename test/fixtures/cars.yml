@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  owner_id: 1
-  model: 'Honda'
-  registration_number: '44-432'
+  owner: sally
+  model: Honda
+  registration_number: 44-432
 
 two:
-  owner_id: 1
-  model: MyString
-  registration_number: MyString
+  owner: sally
+  model: Nissan
+  registration_number: 45-234

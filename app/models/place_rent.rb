@@ -2,9 +2,9 @@ class PlaceRent < ActiveRecord::Base
   belongs_to :car
   belongs_to :parking
   validates :starts_at, :ends_at, :parking, :car, presence: true
+  before_save :set_price
 
-  
-  
+  private
 
   def calculate_price
 
@@ -16,7 +16,6 @@ class PlaceRent < ActiveRecord::Base
     unless end_d == end_d.beginning_of_hour
       end_d = (end_d + 1.hour).at_beginning_of_hour
     end
-    
 
     if end_d.to_date == start_d.to_date
       (((end_d - start_d) / 1.hour).round) * parkng.hour_price
@@ -31,8 +30,12 @@ class PlaceRent < ActiveRecord::Base
       if @end_day_hours == 24
         @days += 1
         @end_day_hours = 0
-      end  
+      end 
       ((@days * day_p) + (@start_day_hours + @end_day_hours) * hour_p).round(2)
     end
+  end
+
+  def set_price
+    self.price = calculate_price
   end
 end

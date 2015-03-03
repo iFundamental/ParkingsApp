@@ -11,6 +11,10 @@
   <strong>End date:</strong>
   <%= @place_rent.ends_at.to_s(:long_ordinal) %>
 </p>
+<p>
+  <strong>Price:</strong>
+  <%= number_to_currency(@place_rent.price, unit:"€") %>
+</p>
 
 <p><%= link_to 'Back to parkings list', parkings_path %></p>
 <p><%= link_to 'View all rentals', place_rents_path %></p>

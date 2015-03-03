@@ -25,6 +25,6 @@ class PlaceRentsTest < ActionDispatch::IntegrationTest
 
   test "price is displayed on the place rents list" do
     visit parkings_url
-    assert has_content?('price')
+    assert has_content?('Price')
   end
 end

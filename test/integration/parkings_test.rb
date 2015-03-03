@@ -41,9 +41,9 @@ class ParkingsTest < ActionDispatch::IntegrationTest
 
   test "user removes a parking" do
     visit parkings_url
-    @finalcount = all('tr').count - 1
+    finalcount = all('tr').count - 1
     click_link('Delete', match: :first)
-    assert @finalcount == all('tr').count
+    assert_equal finalcount, all('tr').count
   end
 
   test "user searches parkings day price " do

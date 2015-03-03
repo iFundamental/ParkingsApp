@@ -1,5 +1,5 @@
 class CarsController < ApplicationController
-
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   def index
     @cars = current_person.cars.all
   end
@@ -44,5 +44,9 @@ class CarsController < ApplicationController
 
   def car_params
     params.require(:car).permit(:model, :registration_number)
+  end
+
+  def record_not_found
+    redirect_to cars_url, notice: 'Car not found.'
   end
 end

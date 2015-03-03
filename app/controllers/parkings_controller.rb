@@ -1,6 +1,6 @@
 class ParkingsController < ApplicationController
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   def index
-    
     @search_params = search_params
     if @search_params.key?(:filter)
       @parkings = Parking.all
@@ -58,5 +58,9 @@ class ParkingsController < ApplicationController
       { hour_price_from: '', hour_price_to: '', day_price_from: '', day_price_to: '', city_name: '', show_private: 1, show_public: 1, filter: false }
     end
 
+  end
+
+  def record_not_found
+    redirect_to parkings_url, notice: 'Parking not found.'
   end
 end

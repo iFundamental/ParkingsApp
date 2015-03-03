@@ -1,6 +1,8 @@
 class ParkingsController < ApplicationController
   def index
     @parkings = Parking.all
+    # @test = params
+    # @test2 = params.has_key?("search")
     @search_params = search_params
   end
 
@@ -47,6 +49,11 @@ class ParkingsController < ApplicationController
   end
 
   def search_params
-    params[:search].permit(:hour_price, :day_price, :city_name, :show_private, :show_public)
+    if params.has_key?('search')
+       params[:search].permit(:hour_price, :day_price, :city_name, :show_private, :show_public)
+    else
+      { hour_price: '', day_price: '', city_name: 'test', show_private: 0, show_public: 0 }
+    end
+
   end
 end

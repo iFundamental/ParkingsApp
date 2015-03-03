@@ -9,7 +9,7 @@ class Parking < ActiveRecord::Base
 
   accepts_nested_attributes_for :address, allow_destroy: true
 
-  scope :city_starts_with,   -> (city_name) {  joins(:address).where('addresses.city like ?', "#{city_name}%") }
+  scope :city_starts_with,   -> (city_name) {  joins(:address).where('addresses.city  like ?', "#{city_name}%") }
   scope :day_price_between,  -> (start_price, end_price) { where('parkings.day_price between ? and ?', start_price, end_price) }
   scope :hour_price_between, -> (start_price, end_price) { where('parkings.hour_price between ? and ?', start_price, end_price) }
   scope :private_parkings,   -> { where(kind: :private) }

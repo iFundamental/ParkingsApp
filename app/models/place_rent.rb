@@ -4,12 +4,8 @@ class PlaceRent < ActiveRecord::Base
   validates :starts_at, :ends_at, :parking, :car, presence: true
   before_save :set_price
 
-
-
   def close_parking
     self.ends_at = Time.now if ends_at >= Time.now  
-
-
   end
 
   private
@@ -38,7 +34,7 @@ class PlaceRent < ActiveRecord::Base
       if @end_day_hours == 24
         @days += 1
         @end_day_hours = 0
-      end 
+      end
       ((@days * day_p) + (@start_day_hours + @end_day_hours) * hour_p).round(2)
     end
   end

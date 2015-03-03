@@ -5,7 +5,7 @@ class PlaceRentsController < ApplicationController
   end
 
   def show
-     @place_rent = PlaceRent.find(params[:id])
+    @place_rent = PlaceRent.find(params[:id])
   end
 
   def new
@@ -14,7 +14,7 @@ class PlaceRentsController < ApplicationController
   end
 
   def edit
-     @place_rent = PlaceRent.find(params[:id])
+    @place_rent = PlaceRent.find(params[:id])
   end
 
   def create
@@ -29,6 +29,7 @@ class PlaceRentsController < ApplicationController
   end
 
   def update
+    @place_rent = PlaceRent.find(params[:id])
     if @place_rent.update(place_rent_params)
       redirect_to @place_rent, notice: 'Place rent was successfully updated.'
     else
@@ -37,6 +38,7 @@ class PlaceRentsController < ApplicationController
   end
 
   def destroy
+    @place_rent = PlaceRent.find(params[:id])
     @place_rent.destroy
     redirect_to place_rents_url, notice: 'Place rent was successfully deleted.'
   end

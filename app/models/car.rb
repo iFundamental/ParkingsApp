@@ -3,9 +3,6 @@ class Car < ActiveRecord::Base
   has_many :place_rents, dependent: :destroy
   validates :model, :registration_number, :owner, presence: true
 
-
-
-
   def car_model_registration
     model + ' - ' + registration_number
   end

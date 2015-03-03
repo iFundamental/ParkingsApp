@@ -10,7 +10,7 @@ class PlaceRentsController < ApplicationController
 
   def new
     @place_rent = PlaceRent.new
-    @cars = current_person.cars.all
+    @cars = current_person.cars
   end
 
   def edit

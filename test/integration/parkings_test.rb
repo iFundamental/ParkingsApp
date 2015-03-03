@@ -49,8 +49,10 @@ class ParkingsTest < ActionDispatch::IntegrationTest
   test "user searches parkings" do
     visit parkings_url
     within("//form[@id='parking_search']") do
-      fill_in 'Hour price', with: 1
-      fill_in 'Day price', with: 2
+      fill_in 'Hour price from', with: 1
+      fill_in 'Hour price to', with: 3
+      fill_in 'Day price from', with: 2
+      fill_in 'Day price to', with: 4
       fill_in 'City', with: 'Melbourne'
 
       click_button 'Search Parkings'

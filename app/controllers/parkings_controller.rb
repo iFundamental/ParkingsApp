@@ -50,9 +50,9 @@ class ParkingsController < ApplicationController
 
   def search_params
     if params.has_key?('search')
-       params[:search].permit(:hour_price, :day_price, :city_name, :show_private, :show_public)
+      params[:search].permit(:hour_price_from, :hour_price_to, :day_price_from, :day_price_to, :city_name, :show_private, :show_public)
     else
-      { hour_price: '', day_price: '', city_name: 'test', show_private: 0, show_public: 0 }
+      { hour_price_from: '', hour_price_to: '', day_price_from: '', day_price_to: '', city_name: '', show_private: 0, show_public: 0 }
     end
 
   end

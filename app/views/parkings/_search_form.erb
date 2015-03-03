@@ -1,22 +1,26 @@
 <%= form_for :search,  method: 'get', html: { id: 'parking_search' } do |f| %>
   <div class="field">
-    <%= f.label :hour_price %><br>
-    <%= f.number_field :hour_price, step: 0.01, value: @search_params[:hour_price] || "" %>
+    <%= f.label :hour_price_from %>:
+    <%= f.number_field :hour_price_from, step: 0.01, value: @search_params[:hour_price_from] || "" %>
+    <%= f.label :hour_price_to %>:
+    <%= f.number_field :hour_price_to, step: 0.01, value: @search_params[:hour_price_to] || "" %>
   </div>
   <div class="field">
-    <%= f.label :day_price %><br>
-    <%= f.number_field :day_price, step: 0.01, value: @search_params[:day_price] || ""  %>
+    <%= f.label :day_price_from %>:
+    <%= f.number_field :day_price_from, step: 0.01, value: @search_params[:day_price_from] || ""  %> 
+    <%= f.label :day_price_to %>:
+    <%= f.number_field :day_price_to, step: 0.01, value: @search_params[:day_price_to] || ""  %>
   </div>
   <div class="field">
-    <%= f.label :city_name %><br>
+    <%= f.label :city_name %>:
     <%= f.text_field :city_name, value: @search_params[:city_name] || "" %>
   </div>
     <div class="field">
-    <%= f.label :show_private %><br>
+    <%= f.label :show_private %>:
     <%= f.check_box :show_private, value: @search_params[:show_private] || 0 %>
   </div>
     <div class="field">
-    <%= f.label :show_public %><br>
+    <%= f.label :show_public %>:
     <%= f.check_box :show_public, value: @search_params[:show_public] || 0 %>
   </div>
   <div class="actions">

@@ -26,6 +26,7 @@ class CarsController < ApplicationController
   end
 
   def update
+    @car = Car.find(params[:id])
     if @car.update(car_params)
       redirect_to @car, notice: 'Car was successfully updated.'
     else
@@ -34,6 +35,7 @@ class CarsController < ApplicationController
   end
 
   def destroy
+    @car = Car.find(params[:id])
     @car.destroy
     redirect_to cars_url, notice: 'Car was successfully deleted.'
   end

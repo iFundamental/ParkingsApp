@@ -28,11 +28,31 @@ calc_test_3:
   ends_at: 2015-04-07 23:59:59
   price: 0
 
-
 calc_test_4:
   parking: parking_calc_test
   car: one
   starts_at: 2015-04-01 22:01:00
   ends_at: 2015-04-07 4:30:00
+  price: 0
+
+close_test_1:
+  parking: close_rents_test
+  car: close_rent_test_car
+  starts_at: 2015-04-01 22:01:00
+  ends_at: 2019-04-07 4:30:00
+  price: 0
+
+close_test_2:
+  parking: close_rents_test
+  car: close_rent_test_car
+  starts_at: 2015-04-01 22:01:00
+  ends_at: 2200-02-07 4:30:00
+  price: 0
+
+close_test_3:
+  parking: close_rents_test
+  car: close_rent_test_car
+  starts_at: 2015-04-01 22:01:00
+  ends_at: 1900-02-07 4:30:00
   price: 0
 

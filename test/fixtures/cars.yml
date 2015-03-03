@@ -10,3 +10,8 @@ two:
   model: Honda
   registration_number: 45-234
 
+close_rent_test_car:
+  owner: sally
+  model: BMW
+  registration_number: 43-231
+

@@ -14,3 +14,11 @@ parking_calc_test:
   places: 10
   address: two
   owner: sally
+
+close_rents_test:
+  kind: indoor
+  day_price: 2
+  hour_price: 1
+  places: 10
+  address: two
+  owner: sally

@@ -4,6 +4,14 @@ class PlaceRent < ActiveRecord::Base
   validates :starts_at, :ends_at, :parking, :car, presence: true
   before_save :set_price
 
+
+
+  def close_parking
+    self.ends_at = Time.now if ends_at >= Time.now  
+
+
+  end
+
   private
 
   def calculate_price

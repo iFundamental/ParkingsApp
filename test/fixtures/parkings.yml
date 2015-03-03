@@ -22,3 +22,27 @@ close_rents_test:
   places: 10
   address: two
   owner: sally
+
+parking_scope_test:
+  kind: indoor
+  day_price: 6
+  hour_price: 1
+  places: 10
+  address: one
+  owner: sally
+
+parking_scope_test:
+  kind: private
+  day_price: 7
+  hour_price: 0.5
+  places: 10
+  address: one
+  owner: sally
+
+parking_scope_test:
+  kind: indoor
+  day_price: 10
+  hour_price: 3
+  places: 1
+  address: two
+  owner: sally

@@ -46,17 +46,45 @@ class ParkingsTest < ActionDispatch::IntegrationTest
     assert @finalcount == all('tr').count
   end
 
-  test "user searches parkings" do
+  test "user searches parkings day price " do
     visit parkings_url
     within("//form[@id='parking_search']") do
-      fill_in 'Hour price from', with: 1
-      fill_in 'Hour price to', with: 3
-      fill_in 'Day price from', with: 2
-      fill_in 'Day price to', with: 4
-      fill_in 'City', with: 'Melbourne'
-
+      #fill_in 'Hour price from', with: 1
+      #fill_in 'Hour price to', with: 3
+      fill_in 'Day price from', with: 10
+      fill_in 'Day price to', with: 10
+      fill_in 'City', with: ''
+      check 'Show private'
+      check 'Show public'
       click_button 'Search Parkings'
     end
-    assert has_content?('Parkings')
+    assert has_content?('Berlin')
+  end
+
+  test "user searches parkings hour price range" do
+    visit parkings_url
+    within("//form[@id='parking_search']") do
+      fill_in 'Hour price from', with: 0
+      fill_in 'Hour price to', with: 1
+      #fill_in 'Day price from', with: 1
+      #fill_in 'Day price to', with: 3
+      fill_in 'City', with: ''
+      check 'Show private'
+      check 'Show public'
+      click_button 'Search Parkings'
+    end
+    assert has_content?('Berlin')
+  end
+
+  test "user searches parkings city search" do
+    visit parkings_url
+    within("//form[@id='parking_search']") do
+      fill_in 'City', with: 'Ber'
+      check 'Show private'
+      check 'Show public'
+      click_button 'Search Parkings'
+    end
+    assert has_content?('Berlin')
+    assert has_no_content?('Perth')
   end
 end

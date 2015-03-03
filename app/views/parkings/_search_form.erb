@@ -17,11 +17,11 @@
   </div>
     <div class="field">
     <%= f.label :show_private %>:
-    <%= f.check_box :show_private, value: @search_params[:show_private] || 0 %>
+    <%= f.check_box :show_private, checked:@search_params[:show_private]=="1" %>
   </div>
     <div class="field">
     <%= f.label :show_public %>:
-    <%= f.check_box :show_public, value: @search_params[:show_public] || 0 %>
+    <%= f.check_box :show_public, checked:@search_params[:show_public]=="1" %>
   </div>
   <div class="actions">
     <%= f.submit 'Search Parkings' %>

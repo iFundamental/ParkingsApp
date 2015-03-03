@@ -45,4 +45,16 @@ class ParkingsTest < ActionDispatch::IntegrationTest
     click_link('Delete', match: :first)
     assert @finalcount == all('tr').count
   end
+
+  test "user searches parkings" do
+    visit parkings_url
+    within("//form[@id='parking_search']") do
+      fill_in 'Hour price', with: 1
+      fill_in 'Day price', with: 2
+      fill_in 'City', with: 'Melbourne'
+
+      click_button 'Search Parkings'
+    end
+    assert has_content?('Parkings')
+  end
 end

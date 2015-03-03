@@ -1,5 +1,7 @@
 <h1>Parkings</h1>
-
+<div class="search">
+  <%= render 'search_form' %>
+</div>
 <table>
   <thead>
     <tr>
@@ -10,7 +12,6 @@
       <th colspan="4"></th>
     </tr>
   </thead>
-
   <tbody>
     <% @parkings.each do |parking| %>
       <tr>

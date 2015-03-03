@@ -1,6 +1,7 @@
 class ParkingsController < ApplicationController
   def index
     @parkings = Parking.all
+    @search_params = search_params
   end
 
   def show
@@ -43,5 +44,9 @@ class ParkingsController < ApplicationController
 
   def parking_params
     params.require(:parking).permit(:kind, :places, :hour_price, :day_price, address_attributes: [:city, :zip_code, :street])
+  end
+
+  def search_params
+    params[:search].permit(:hour_price, :day_price, :city_name, :show_private, :show_public)
   end
 end

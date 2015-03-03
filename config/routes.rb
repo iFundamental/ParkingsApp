@@ -15,7 +15,6 @@ Rails.application.routes.draw do
     resources :place_rents, only: [:new, :create]
   end
   resources :place_rents, only: [:show, :index, :destroy]
-
   resources :cars
 
 

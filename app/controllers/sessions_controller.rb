@@ -8,7 +8,11 @@ class SessionsController < ApplicationController
     account = Account.authenticate(session_params[:email], session_params[:password])
     if account != false
       session[:account_id] =  account.id
-      redirect_to parkings_url
+      if  session[:return_to] == new_session_url || session[:return_to] .nil?
+        redirect_to root_url
+      else
+        redirect_to session[:return_to]
+      end
     else
       log_in_failed
     end

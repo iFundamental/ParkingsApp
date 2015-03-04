@@ -2,6 +2,7 @@ require 'test_helper'
 
 class CarsControllerTest < ActionController::TestCase
   setup do
+    login
     @car = cars(:one)
   end
 

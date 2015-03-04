@@ -1,6 +1,11 @@
 require 'test_helper'
 
 class PlaceRentsTest < ActionDispatch::IntegrationTest
+  
+  setup do
+    user_login
+  end
+
   test "user rents a place on parking" do
     visit parkings_url
     click_link('Rent a place', match: :first)

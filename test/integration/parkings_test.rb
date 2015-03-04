@@ -1,6 +1,11 @@
 require 'test_helper'
 
 class ParkingsTest < ActionDispatch::IntegrationTest
+
+  setup do
+    user_login
+  end
+  
   test "user opens parkings index" do
     visit parkings_url
     assert has_content? 'Parkings'

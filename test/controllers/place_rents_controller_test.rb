@@ -2,6 +2,7 @@ require 'test_helper'
 
 class PlaceRentsControllerTest < ActionController::TestCase
   setup do
+    login
     @place_rent = place_rents(:one)
   end
 

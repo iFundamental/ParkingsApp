@@ -1,6 +1,6 @@
-<%= form_for @account, url: session_path do |f| %>
+<%= form_for @account, url: session_path, html: { id: 'login' } do |f| %>
   <% if @account.errors.any? %>
-    <div id="error_explanation">
+    <div id="error_explanationin">
       <h2><%= pluralize(@account.errors.count, "error") %> stopped you from logging in. </h2>
 
       <ul>
@@ -19,7 +19,7 @@
     <%= f.password_field :password %>
   </div>
   <div class="actions">
-    <%= f.submit 'Log In' %>
+    <%= f.submit 'Login' %>
   </div>
 <% end %>
 

@@ -7,5 +7,5 @@
   Account.delete_all
 
   person = Person.create(first_name: 'Sally', last_name: 'Mclean')
-  Account.create(email: 'smclean17@gmail.com', password: 'testpassword', person: person)
+  Account.create(email: 'smclean17@gmail.com', password_digest:  BCrypt::Password.create('testpassword'), person: person)
  

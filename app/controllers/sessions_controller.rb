@@ -5,11 +5,9 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @account = Account.find_by email: session_params[:email]
-    if @account.nil?
-      log_in_failed
-    elsif @account.password == session_params[:password]
-      session[:account_id] =  @account.id
+    account = Account.authenticate(session_params[:email], session_params[:password])
+    if account != false
+      session[:account_id] =  account.id
       redirect_to parkings_url
     else
       log_in_failed
@@ -18,7 +16,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:account_id] = ''
-    redirect_to root_url
+    redirect_to new_session_url, notice: 'You have successfully logged out.'
   end
 
   private

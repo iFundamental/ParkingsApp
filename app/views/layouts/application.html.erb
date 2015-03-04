@@ -9,8 +9,10 @@
   <body>
     <header>
       <div class="user">
-        <%= current_person.full_name unless current_person.nil? %>
+      <% if !current_person.nil? %>
+        <%= current_person.full_name %>
         <p><%= link_to 'Log out', session_path, method: :delete %></p>
+      <% end %>
       </div>
       <nav>
         <ul class="nav nav-tabs">

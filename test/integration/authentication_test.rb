@@ -18,7 +18,6 @@ class AuthenticationTest < ActionDispatch::IntegrationTest
     end
     assert has_content? 'Sally Mclean'
   end
-
 end
 
   

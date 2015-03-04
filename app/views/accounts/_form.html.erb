@@ -1,0 +1,38 @@
+<%= form_for(@account, url: account_path) do |f| %>
+  <% if @account.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@account.errors.count, "error") %> prohibited this account from being saved:</h2>
+
+      <ul>
+      <% @account.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= f.fields_for :person do |ff| %>
+    <div class="field">
+      <%= ff.label :first_name %><br>
+      <%= ff.text_field :first_name %>
+    </div>
+    <div class="field">
+      <%= ff.label :last_name %><br>
+      <%= ff.text_field :last_name %>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.email_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :password %><br>
+    <%= f.password_field :password %>
+  </div>
+  <div class="field">
+    <%= f.label :password_confirmation %><br>
+    <%= f.password_field :password_confirmation %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'Register' %>
+  </div>
+<% end %>

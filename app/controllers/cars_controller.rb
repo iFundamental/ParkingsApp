@@ -3,7 +3,7 @@ class CarsController < ApplicationController
   before_action :require_login
   
   def index
-    @cars = current_person.cars.all
+    @cars = current_person.cars
   end
 
   def show

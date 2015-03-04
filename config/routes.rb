@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   resources :place_rents, only: [:show, :index, :destroy]
   resources :cars
   resource :session
+  resource :account
 
 
   # get 'place_rents' => 'place_rents#index'

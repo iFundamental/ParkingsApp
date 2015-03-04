@@ -11,7 +11,7 @@ class ActiveSupport::TestCase
   def login
     #post session_url, controller: sessions, email: 'smclean17@gmail.com', password: 'testpassword'
     account = accounts(:one)
-     session[:account_id] = account.id
+    session[:account_id] = account.id
   end
 end
 class ActionDispatch::IntegrationTest

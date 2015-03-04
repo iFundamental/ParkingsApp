@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
 
   def create
     @account = Account.find_by email: session_params[:email]
-    if @account.nil?
+    if !@account.nil?
       log_in_failed
     elsif @account.password == session_params[:password]
       session[:account_id] =  @account.id

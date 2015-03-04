@@ -17,6 +17,5 @@ class ApplicationController < ActionController::Base
 
   def current_account
     @account = Account.find_by_id(session[:account_id])
-
   end
 end

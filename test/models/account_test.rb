@@ -9,6 +9,5 @@ class AccountTest < ActiveSupport::TestCase
 
   test "should not validate incorrect account password - return nil" do 
     assert_equal false,  Account.authenticate('smclean17@gmail.com', 'wrongpassword')
-    
   end
 end

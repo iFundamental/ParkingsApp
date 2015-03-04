@@ -1,5 +1,6 @@
 class PlaceRentsController < ApplicationController
-
+  before_action :require_login
+  
   def index
     @place_rents = PlaceRent.all
   end

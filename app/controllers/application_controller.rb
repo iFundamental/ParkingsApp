@@ -8,14 +8,26 @@ class ApplicationController < ActionController::Base
   private
 
   def current_person
-    if current_account.nil?
+    account = current_account
+    if account.nil?
       nil
     else
-      @account.person
+      account.person
     end
   end
 
   def current_account
-    @account = Account.find_by_id(session[:account_id])
+    Account.find_by_id(session[:account_id])
+  end
+
+  def logged_in?
+    !current_account.nil?
+  end
+ 
+  def require_login
+    unless logged_in?
+      flash[:error] = 'You must be logged in to access this section'
+      redirect_to new_session_url
+    end
   end
 end

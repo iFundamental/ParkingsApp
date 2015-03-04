@@ -1,11 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  Person_id: 
-  email: MyString
-  password: MyString
+  Person: one 
+  email: smclean17@gmail.com
+  password: testpassword
 
-two:
-  Person_id: 
-  email: MyString
-  password: MyString

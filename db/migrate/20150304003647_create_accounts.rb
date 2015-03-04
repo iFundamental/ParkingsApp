@@ -4,9 +4,7 @@ class CreateAccounts < ActiveRecord::Migration
       t.references :person, index: true
       t.string :email
       t.string :password
-
       t.timestamps null: false
-
     end
     add_foreign_key :accounts, :People
     add_index :accounts, :email, unique: :true

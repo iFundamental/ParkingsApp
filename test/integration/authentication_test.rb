@@ -19,5 +19,4 @@ class AuthenticationTest < ActionDispatch::IntegrationTest
   end
 end
 
-
   

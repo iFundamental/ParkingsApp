@@ -5,7 +5,7 @@ class PlaceRent < ActiveRecord::Base
   before_save :set_price
 
   def close_parking
-    self.ends_at = Time.now if ends_at >= Time.now  
+    self.ends_at = Time.now if ends_at >= Time.now
   end
 
   private
@@ -22,7 +22,7 @@ class PlaceRent < ActiveRecord::Base
     end
 
     if end_d.to_date == start_d.to_date
-      (((end_d - start_d) / 1.hour).round) * parkng.hour_price
+      (((end_d - start_d) / 1.hour).round) * parking.hour_price
     else
       @start_day_hours = (((start_d.at_end_of_day - start_d) / 1.hour).round)
       @days = (end_d.at_beginning_of_day - (start_d + 1.days).at_beginning_of_day).to_i / 1.day

@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   end
   resources :place_rents, only: [:show, :index, :destroy]
   resources :cars
+  resource :session
 
 
   # get 'place_rents' => 'place_rents#index'

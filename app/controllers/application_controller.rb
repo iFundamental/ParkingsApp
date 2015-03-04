@@ -8,6 +8,15 @@ class ApplicationController < ActionController::Base
   private
 
   def current_person
-    Person.first
+    if current_account.nil?
+      nil
+    else
+      @account.person
+    end
+  end
+
+  def current_account
+    @account = Account.find_by_id(session[:account_id])
+
   end
 end

@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     account = Account.authenticate(session_params[:email], session_params[:password])
     if account != false
       session[:account_id] =  account.id
-      if  session[:return_to] == new_session_url || session[:return_to] .nil?
+      if  session[:return_to] == login_url || session[:return_to] .nil?
         redirect_to root_url
       else
         redirect_to session[:return_to]
@@ -20,13 +20,13 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:account_id] = ''
-    redirect_to new_session_url, notice: 'You have successfully logged out.'
+    redirect_to login_url, notice: 'You have successfully logged out.'
   end
 
   private
 
   def log_in_failed
-    redirect_to new_session_url, notice: 'Login failed. Incorrect username or password.'
+    redirect_to login_url, notice: 'Login failed. Incorrect username or password.'
   end
 
   def session_params

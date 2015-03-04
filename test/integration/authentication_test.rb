@@ -10,7 +10,7 @@ class AuthenticationTest < ActionDispatch::IntegrationTest
     assert has_no_content? 'Sally Mclean'
   end
   test 'Existing user logs in' do
-    visit new_session_url
+    visit login_url
     within("//form[@id='login']") do
       fill_in 'Email', with: 'smclean17@gmail.com'
       fill_in 'Password', with: 'testpassword'

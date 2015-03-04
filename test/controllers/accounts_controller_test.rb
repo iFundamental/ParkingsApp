@@ -21,7 +21,7 @@ class AccountsControllerTest < ActionController::TestCase
   #     post :create, account: { email: @account.email }
   #   end
 
-  #   assert_redirected_to account_path(assigns(:account))
+  #   assert_redirected_to register_path(assigns(:account))
   # end
 
   # test "should show account" do
@@ -36,7 +36,7 @@ class AccountsControllerTest < ActionController::TestCase
 
   # test "should update account" do
   #   patch :update, id: @account, account: { email: @account.email }
-  #   assert_redirected_to account_path(assigns(:account))
+  #   assert_redirected_to register_path(assigns(:account))
   # end
 
   # test "should destroy account" do

@@ -16,8 +16,17 @@ Rails.application.routes.draw do
   end
   resources :place_rents, only: [:show, :index, :destroy]
   resources :cars
-  resource :session
-  resource :account
+
+
+  get "login" => "sessions#new"
+  post "login" => "sessions#create"
+  get "register" => "accounts#new"
+  post "register" => "accounts#create"
+  get "logout" => "sessions#destroy"
+ 
+
+
+
 
 
   # get 'place_rents' => 'place_rents#index'

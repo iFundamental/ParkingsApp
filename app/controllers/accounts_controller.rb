@@ -13,7 +13,7 @@ class AccountsController < ApplicationController
   def create
     @account = Account.new(account_params)
     if @account.save
-      redirect_to new_session_url, notice: 'Account was successfully created. Please Login.'
+      redirect_to login_url, notice: 'Account was successfully created. Please Login.'
     else
       render :new
     end

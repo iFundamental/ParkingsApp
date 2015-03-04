@@ -19,7 +19,7 @@ class ActionDispatch::IntegrationTest
   include Capybara::DSL
 
   def user_login
-    visit new_session_url
+    visit login_url
     within("//form[@id='login']") do
       fill_in 'Email', with: 'smclean17@gmail.com'
       fill_in 'Password', with: 'testpassword'

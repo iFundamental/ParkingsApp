@@ -35,7 +35,7 @@ class ParkingsController < ApplicationController
   def update
     @parking = Parking.find(params[:id])
     if @parking.update(parking_params)
-      redirect_to @parking, notice: t('parking_create_update')
+      redirect_to @parking, notice: t('parking_update_success')
     else
       render :edit
     end

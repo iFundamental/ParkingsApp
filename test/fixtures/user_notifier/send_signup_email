@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p> Hello Sally Mclean! </p>
+    <p> You have successfully signed up to bookparking.dev </p>
+    <p> To login to the site, just follow this link: http://localhost:3000/login. </p>
+    <p> Thanks for joining and have a great day! </p>
+  </body>
+</html>

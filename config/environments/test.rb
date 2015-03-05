@@ -42,4 +42,7 @@ Rails.application.configure do
 
   # capybara configeration suggestion
   config.allow_concurrency = false
+
+  config.action_mailer.default_url_options = { :host => "localhost:3000" }
+
 end

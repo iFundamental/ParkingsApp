@@ -20,9 +20,9 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  parking_create_success: "Parking was successfully created"
-  parking_update_success: "Parking was successfully updated"
-  parking_delete_success: "Parking was successfully deleted"
-  parking_not_found:      "Parking was not found"
+  parking_create_success: "Parking was successfully created."
+  parking_update_success: "Parking was successfully updated."
+  parking_delete_success: "Parking was successfully deleted."
+  parking_not_found:      "Parking was not found."
 
 

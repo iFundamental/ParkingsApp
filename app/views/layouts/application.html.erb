@@ -7,32 +7,12 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <header>
-      <div class="user">
-      <% if !current_person.nil? %>
-        <%= current_person.full_name %>
-        <p><%= link_to 'Log out', logout_path, method: :delete %></p>
-      <% end %>
+     <%= render 'layouts/header' %>
+    <div class="container">
+      <div class='notice'>
+        <%= render 'layouts/notice' %>
       </div>
-      <nav>
-        <ul class="nav nav-tabs">
-          <li>
-            <p><%= link_to 'Cars', cars_path %></p>
-          </li>
-          <li>
-            <p><%= link_to 'Parkings', parkings_path %></p>
-          </li>
-          <li>
-            <p><%= link_to 'Rents', place_rents_path %></p>
-          </li>
-        </ul>
-      </nav>
-    </header>
-    <main>
-    <div class='notice'>
-      <%= render 'layouts/notice' %>
-    </div>
       <%= yield %>
-    </main>
+    </div>
   </body>
 </html>

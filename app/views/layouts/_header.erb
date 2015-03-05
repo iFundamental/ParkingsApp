@@ -1,0 +1,31 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Parking Rentals</a>
+        <% if !current_person.nil? %>
+          <%= current_person.full_name %>
+          <%= link_to 'Log out', logout_path, class: 'navbar-brand', method: :delete %>
+        <% end %>
+      </div>
+      <div id="navbar" class="collapse navbar-collapse pull-right">
+      <ul class="nav nav-tabs">
+          <li>
+            <%= link_to 'Cars', cars_path %>
+          </li>
+          <li>
+            <%= link_to 'Parkings', parkings_path %>
+          </li>
+          <li>
+            <%= link_to 'Rents', place_rents_path %>
+          </li>
+        </ul>
+    </div>
+  </div>
+</nav>
+     

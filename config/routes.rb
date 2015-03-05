@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
+  Rails.application.routes.default_url_options[:host] = 'localhost:3000'
   root 'parkings#index'
 
   # get 'parkings/' => 'parkings#index'
@@ -22,7 +23,7 @@ Rails.application.routes.draw do
   post "login" => "sessions#create"
   get "register" => "accounts#new"
   post "register" => "accounts#create"
-  get "logout" => "sessions#destroy"
+  delete "logout" => "sessions#destroy"
  
 
 

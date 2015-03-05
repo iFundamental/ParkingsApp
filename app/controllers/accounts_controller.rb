@@ -13,6 +13,7 @@ class AccountsController < ApplicationController
   def create
     @account = Account.new(account_params)
     if @account.save
+      UserNotifier.send_signup_email(@account).deliver
       redirect_to login_url, notice: 'Account was successfully created. Please Login.'
     else
       render :new

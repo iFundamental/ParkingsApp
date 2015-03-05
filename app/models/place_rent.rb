@@ -8,6 +8,10 @@ class PlaceRent < ActiveRecord::Base
     self.ends_at = Time.now if ends_at >= Time.now
   end
 
+  def to_param
+    "#{self.id}-" + ('a'..'z').to_a.shuffle[0, 8].join
+  end
+
   private
 
   def calculate_price

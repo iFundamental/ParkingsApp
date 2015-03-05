@@ -8,6 +8,6 @@ class Car < ActiveRecord::Base
   end
 
   def to_param
-    "#{self.id}-#{self.model}"
+    "#{id}-#{model}"
   end
 end

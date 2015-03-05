@@ -15,6 +15,8 @@ class Parking < ActiveRecord::Base
   scope :private_parkings,   -> { where(kind: :private) }
   scope :public_parkings,    -> { where("parkings.kind != 'private'") }
 
+  self.per_page = 10
+
   def self.parking_search(params)
     parkings = Parking.all
     parkings = parkings.city_starts_with(params[:city_name]) if params[:city_name].present?

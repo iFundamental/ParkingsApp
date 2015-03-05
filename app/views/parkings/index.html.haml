@@ -1,6 +1,7 @@
 %h1 Parkings
 .search
   = render 'search_form'
+  = page_entries_info @parkings
 %table.table
   %thead
     %tr
@@ -22,4 +23,5 @@
         %td= link_to 'Edit', edit_parking_path(parking)
         %td= link_to 'Delete', parking, method: :delete, data: { confirm: 'Are you sure?' }
         %td= link_to 'Rent a place', new_parking_place_rent_path(parking)
+= will_paginate @parkings
 %p= link_to 'Create a New Parking', new_parking_path

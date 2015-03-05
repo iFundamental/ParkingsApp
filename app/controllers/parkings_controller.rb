@@ -1,11 +1,12 @@
 class ParkingsController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+
   def index
     @search_params = search_params
     if @search_params.key?(:filter)
-      @parkings = Parking.all
+      @parkings = Parking.all.page(params[:page])
     else
-      @parkings = Parking.parking_search(@search_params)
+      @parkings = Parking.parking_search(@search_params).page(params[:page])
     end
   end
 

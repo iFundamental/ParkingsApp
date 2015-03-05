@@ -33,7 +33,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt'
 gem 'bootstrap-sass', '~> 3.3.3'
 gem 'haml-rails', '~> 0.8.2'
-
+gem 'will_paginate', '~> 3.0.7'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

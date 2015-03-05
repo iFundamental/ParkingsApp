@@ -6,4 +6,8 @@ class Car < ActiveRecord::Base
   def car_model_registration
     model + ' - ' + registration_number
   end
+
+  def to_param
+    "#{self.id}-#{self.model}"
+  end
 end

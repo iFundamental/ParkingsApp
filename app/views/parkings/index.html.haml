@@ -1,0 +1,25 @@
+%h1 Parkings
+.search
+  = render 'search_form'
+%table.table
+  %thead
+    %tr
+      %th City
+      %th Places
+      %th Hourly Price
+      %th Daily Price
+      %th{:colspan => "4"}
+  %tbody
+    - @parkings.each do |parking|
+      %tr
+        %td
+          - if parking.address.present?
+            = parking.address.city
+        %td= parking.places
+        %td= number_to_currency(parking.hour_price, unit:"€")
+        %td= number_to_currency(parking.day_price, unit:"€")
+        %td= link_to 'Show', parking
+        %td= link_to 'Edit', edit_parking_path(parking)
+        %td= link_to 'Delete', parking, method: :delete, data: { confirm: 'Are you sure?' }
+        %td= link_to 'Rent a place', new_parking_place_rent_path(parking)
+%p= link_to 'Create a New Parking', new_parking_path

@@ -21,7 +21,7 @@ class ParkingsController < ApplicationController
   def create
     @parking = Parking.new(parking_params)
     if @parking.save
-      redirect_to @parking, notice: 'Parking was successfully created.'
+      redirect_to @parking, notice: t('parking_create_success')
     else
       render :new
     end
@@ -34,7 +34,7 @@ class ParkingsController < ApplicationController
   def update
     @parking = Parking.find(params[:id])
     if @parking.update(parking_params)
-      redirect_to @parking, notice: 'Parking was successfully updated.'
+      redirect_to @parking, notice: t('parking_create_update')
     else
       render :edit
     end
@@ -42,7 +42,7 @@ class ParkingsController < ApplicationController
 
   def destroy
     Parking.find(params[:id]).destroy
-    redirect_to action: :index, notice: 'Parking was successfully deleted.'
+    redirect_to action: :index, notice: t('parking_success_delete')
   end
 
   private
@@ -61,6 +61,6 @@ class ParkingsController < ApplicationController
   end
 
   def record_not_found
-    redirect_to parkings_url, notice: 'Parking not found.'
+    redirect_to parkings_url, notice: t('parking_not_found')
   end
 end

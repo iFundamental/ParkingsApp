@@ -1,0 +1,5 @@
+de:
+  parking_create_success: "Parken erfolgreich erstellt"
+  parking_update_success: "Parken erfolgreich aktualisiert"
+  parking_delete_success: "Parkplatz wurde erfolgreich gelöscht"
+  parking_not_found:      "Parkplaz wurde nicht gefunden"

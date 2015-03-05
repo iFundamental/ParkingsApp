@@ -6,7 +6,7 @@ class CreateAccounts < ActiveRecord::Migration
       t.string :password
       t.timestamps null: false
     end
-    add_foreign_key :accounts, :People
+    add_foreign_key :accounts, :people
     add_index :accounts, :email, unique: :true
   end
 end

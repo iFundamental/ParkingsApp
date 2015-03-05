@@ -1,29 +1,49 @@
-<%= form_for :search,  method: 'get', html: { id: 'parking_search' } do |f| %>
-  <div class="field">
-    <%= f.label :hour_price_from %>:
-    <%= f.number_field :hour_price_from, step: 0.01, value: @search_params[:hour_price_from] || "" %>
-    <%= f.label :hour_price_to %>:
-    <%= f.number_field :hour_price_to, step: 0.01, value: @search_params[:hour_price_to] || "" %>
+<%= form_for :search,  method: 'get', html: { id: 'parking_search', class: 'form-horizontal' } do |f| %>
+  <div class="form-group">
+    <%= f.label :hour_price_from, class: 'col-sm-2 control-label' %>
+     <div class='col-sm-4'>
+       <%= f.number_field :hour_price_from, step: 0.01, class: 'form-control', value: @search_params[:hour_price_from] || "" %>
+    </div>
+    <%= f.label :hour_price_to, class: 'col-sm-2 control-label' %>
+      <div class='col-sm-4'>
+      <%= f.number_field :hour_price_to, step: 0.01, class: 'form-control', value: @search_params[:hour_price_to] || "" %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :day_price_from %>:
-    <%= f.number_field :day_price_from, step: 0.01, value: @search_params[:day_price_from] || ""  %> 
-    <%= f.label :day_price_to %>:
-    <%= f.number_field :day_price_to, step: 0.01, value: @search_params[:day_price_to] || ""  %>
+  <div class="form-group">
+    <%= f.label :day_price_from , class: 'col-sm-2 control-label'%>
+    <div class='col-sm-4'>
+      <%= f.number_field :day_price_from, step: 0.01, class: 'form-control', value: @search_params[:day_price_from] || ""  %> 
+    </div>
+    <%= f.label :day_price_to, class: 'col-sm-2 control-label' %>
+    <div class='col-sm-4'>
+      <%= f.number_field :day_price_to, step: 0.01, class: 'form-control', value: @search_params[:day_price_to] || ""  %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :city_name %>:
-    <%= f.text_field :city_name, value: @search_params[:city_name] || "" %>
+  <div class="form-group">
+    <%= f.label :city_name,  class: 'col-sm-2 control-label' %>
+    <div class='col-sm-10'>
+      <%= f.text_field :city_name, class: 'form-control', value: @search_params[:city_name] || "" %>
+    </div>
   </div>
-    <div class="field">
-    <%= f.label :show_private %>:
-    <%= f.check_box :show_private, checked:@search_params[:show_private]=="1" %>
+  <div class="form-group">
+    <%= f.label :show_private, class: 'col-sm-2 control-label' %>
+    <div class='col-sm-4'>
+      <div class="checkbox">
+        <%= f.check_box :show_private, checked:@search_params[:show_private]=="1" %>
+      </div>
+    </div>
+    <%= f.label :show_public, class: 'col-sm-2 control-label' %>
+    <div class='col-sm-4'>
+      <div class="checkbox">
+        <%= f.check_box :show_public, checked:@search_params[:show_public]=="1" %>
+      </div>
+    </div>
   </div>
-    <div class="field">
-    <%= f.label :show_public %>:
-    <%= f.check_box :show_public, checked:@search_params[:show_public]=="1" %>
-  </div>
-  <div class="actions">
-    <%= f.submit 'Search Parkings' %>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.submit 'Search Parkings', class: "btn btn-default" %>
+    </div>
   </div>
 <% end %>
+
+

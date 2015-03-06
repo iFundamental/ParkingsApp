@@ -5,10 +5,11 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if session_params[:email]
-      login_account
-    else
+    if session_params[:email] == ''
       login_facebook
+      
+    else
+      login_account
     end
   end
 

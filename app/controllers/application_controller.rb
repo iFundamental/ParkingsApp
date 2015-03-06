@@ -16,11 +16,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def current_account
+def current_account
     account = Account.find_by_id(session[:account_id])
     if account.nil?
       account = FacebookAccount.find_by_id(session[:facebook_account_id])
     end
+    account
   end
 
   def logged_in?

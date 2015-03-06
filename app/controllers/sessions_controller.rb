@@ -18,6 +18,10 @@ class SessionsController < ApplicationController
     end
   end
 
+  def failure
+
+  end
+
   def destroy
     session[:account_id] = ''
     redirect_to login_url, notice: 'You have successfully logged out.'

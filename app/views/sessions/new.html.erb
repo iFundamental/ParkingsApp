@@ -1,5 +1,6 @@
 <%- title "Log in" %>
 <h1>Log in</h1>
 <%= render 'login_form' %>
+<%= link_to 'Login with Facebook', '/auth/facebook/callback' %><br>
 <%= link_to 'Not already registered?', register_path %>
 

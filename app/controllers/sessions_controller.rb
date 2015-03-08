@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
   end
 
   def failure
-    redirect_to login_url, notice: 'Facebook authentication failed.'
+    redirect_to login_url, alert: 'Facebook authentication failed.'
   end
 
   def destroy
@@ -50,7 +50,7 @@ class SessionsController < ApplicationController
   end
 
   def log_in_failed
-    redirect_to login_url, notice: 'Login failed. Incorrect username or password.'
+    redirect_to login_url, alert: 'Login failed. Incorrect username or password.'
   end
 
   def session_params

@@ -49,6 +49,6 @@ class CarsController < ApplicationController
   end
 
   def record_not_found
-    redirect_to cars_url, notice: 'Car not found.'
+    redirect_to cars_url, alert: 'Car not found.'
   end
 end

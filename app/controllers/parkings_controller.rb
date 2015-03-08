@@ -62,6 +62,6 @@ class ParkingsController < ApplicationController
   end
 
   def record_not_found
-    redirect_to parkings_url, notice: t('parking_not_found')
+    redirect_to parkings_url, alert: t('parking_not_found')
   end
 end

@@ -14,7 +14,7 @@ class ParkingsTest < ActionDispatch::IntegrationTest
   test "user opens parking details" do
     visit parkings_url
     click_link('Show', match: :first)
-    assert has_content? 'View Parking Details'
+    assert has_content? 'Parking Details'
     assert has_content? 'indoor'
   end
 
@@ -36,7 +36,7 @@ class ParkingsTest < ActionDispatch::IntegrationTest
   test "user edits a parking" do
     visit parkings_url
     click_link('Edit', match: :first)
-    within("//form[@class='edit_parking']") do
+    within("//form[@class='form-horizontal']") do
       fill_in 'City', with: 'Perth'
       click_button 'Update Parking'
     end

@@ -1,17 +1,5 @@
 <%= form_for :search,  method: 'get', html: { id: 'parking_search', class: 'form-horizontal' } do |f| %>
   <div class="form-group">
-    <%= f.label :hour_price_from, class: 'col-sm-2 control-label' %>
-     <div class='col-sm-4'>
-       <%= f.number_field :hour_price_from, step: 0.01, class: 'form-control', value: @search_params[:hour_price_from] || "" %>
-    </div>
-    <%= f.label :hour_price_to, class: 'col-sm-2 control-label' %>
-      <div class='col-sm-4'>
-      <%= f.number_field :hour_price_to, step: 0.01, class: 'form-control', value: @search_params[:hour_price_to] || "" %>
-    </div>
-  </div>
-
-
-  <div class="form-group">
     <%= f.label :day_price_from, class: 'col-sm-2 control-label' %>
     <div class='col-sm-4'>
       <div class='input-group'>

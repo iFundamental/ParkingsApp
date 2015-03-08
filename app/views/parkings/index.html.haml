@@ -1,27 +1,38 @@
-%h1 Parkings
-.search
-  = render 'search_form'
-  = page_entries_info @parkings
-%table.table
-  %thead
-    %tr
-      %th City
-      %th Places
-      %th Hourly Price
-      %th Daily Price
-      %th{:colspan => "4"}
-  %tbody
-    - @parkings.each do |parking|
-      %tr
-        %td
-          - if parking.address.present?
-            = parking.address.city
-        %td= parking.places
-        %td= number_to_currency(parking.hour_price, unit:"€")
-        %td= number_to_currency(parking.day_price, unit:"€")
-        %td= link_to 'Show', parking
-        %td= link_to 'Edit', edit_parking_path(parking)
-        %td= link_to 'Delete', parking, method: :delete, data: { confirm: 'Are you sure?' }
-        %td= link_to 'Rent a place', new_parking_place_rent_path(parking)
-= will_paginate @parkings
-%p= link_to 'Create a New Parking', new_parking_path
+.row
+  .col-xs-12
+    .panel.panel-default
+      .panel-heading
+        %h2 Search Parkings
+      .panel-body
+        = render 'search_form'
+    .panel.panel-default
+      .panel-heading
+        %h2 Parking List
+      .panel-body
+        = page_entries_info @parkings
+      %table.table
+        %thead
+          %tr
+            %th City
+            %th Places
+            %th Hourly Price
+            %th Daily Price
+            %th{:colspan => "4"}
+        %tbody
+          - @parkings.each do |parking|
+            %tr
+              %td
+                - if parking.address.present?
+                  = parking.address.city
+              %td= parking.places
+              %td= number_to_currency(parking.hour_price, unit:"€")
+              %td= number_to_currency(parking.day_price, unit:"€")
+              %td= link_to 'Show', parking
+              %td= link_to 'Edit', edit_parking_path(parking)
+              %td= link_to 'Delete', parking, method: :delete, data: { confirm: 'Are you sure?' }
+              %td= link_to 'Rent a place', new_parking_place_rent_path(parking)
+      .panel-footer
+        = will_paginate @parkings
+        = button_to 'Create a New Parking', new_parking_path, class: 'btn btn-default', method: :get
+
+

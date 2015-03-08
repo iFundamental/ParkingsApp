@@ -15,7 +15,7 @@ class Parking < ActiveRecord::Base
   scope :private_parkings,   -> { where(kind: :private) }
   scope :public_parkings,    -> { where("parkings.kind != 'private'") }
 
-  self.per_page = 10
+  self.per_page = 5
 
   def self.parking_search(params)
     parkings = Parking.all

@@ -5,10 +5,10 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if session_params[:email] == ''
-      login_facebook
-    else
+    if params.key?('account')
       login_account
+    else
+      login_facebook
     end
   end
 
@@ -18,6 +18,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:account_id] = ''
+    session[:facebook_account_id] = ''
     redirect_to login_url, notice: 'You have successfully logged out.'
   end
 

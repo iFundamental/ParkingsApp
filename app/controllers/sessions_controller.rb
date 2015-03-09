@@ -26,7 +26,7 @@ class SessionsController < ApplicationController
 
   def login_account
     account = Account.authenticate(params[:account][:email], params[:account][:password])
-    if account != false
+    if account
       session[:account_id] = account.id
       redirect_after_login
     else

@@ -58,7 +58,6 @@ class ParkingsController < ApplicationController
     else
       { hour_price_from: '', hour_price_to: '', day_price_from: '', day_price_to: '', city_name: '', show_private: 1, show_public: 1, filter: false }
     end
-
   end
 
   def record_not_found

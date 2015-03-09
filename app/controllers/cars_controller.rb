@@ -1,5 +1,6 @@
 class CarsController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+  
   before_action :require_login
   
   def index

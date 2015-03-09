@@ -8,12 +8,7 @@ class ApplicationController < ActionController::Base
   private
 
   def current_person
-    account = current_account
-    if account.nil?
-      nil
-    else
-      account.person
-    end
+    current_account.person if logged_in?
   end
 
   def current_account

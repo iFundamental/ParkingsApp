@@ -5,11 +5,7 @@ class Account < ActiveRecord::Base
 
   def self.authenticate(email, password)
     account = Account.find_by email: email
-    if account.nil?
-      false
-    else
-      account.authenticate(password)
-    end
+    account.authenticate(password) if account
   end
 end
 

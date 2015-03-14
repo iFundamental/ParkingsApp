@@ -46,16 +46,16 @@ class ParkingsTest < ActionDispatch::IntegrationTest
 
   test "user removes a parking" do
     visit parkings_url
-    finalcount = all('tr').count - 1
-    click_link('Delete', match: :first)
-    assert_equal finalcount, all('tr').count
+    assert_difference "all('tr').count", -1 do
+      click_link('Delete', match: :first)
+    end
+
+
   end
 
   test "user searches parkings day price " do
     visit parkings_url
     within("//form[@id='parking_search']") do
-      #fill_in 'Hour price from', with: 1
-      #fill_in 'Hour price to', with: 3
       fill_in 'Day price from', with: 10
       fill_in 'Day price to', with: 10
       fill_in 'City', with: ''
@@ -71,8 +71,6 @@ class ParkingsTest < ActionDispatch::IntegrationTest
     within("//form[@id='parking_search']") do
       fill_in 'Hour price from', with: 0
       fill_in 'Hour price to', with: 1
-      #fill_in 'Day price from', with: 1
-      #fill_in 'Day price to', with: 3
       fill_in 'City', with: ''
       check 'Show private'
       check 'Show public'

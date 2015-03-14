@@ -12,10 +12,8 @@ class PlaceRent < ActiveRecord::Base
     "#{self.id}-" + ('a'..'z').to_a.shuffle[0, 8].join
   end
 
-  private
 
   def calculate_price
-
     start_d = starts_at.beginning_of_hour
     end_d = ends_at
     day_p = (parking.day_price).round(2)
@@ -42,6 +40,8 @@ class PlaceRent < ActiveRecord::Base
       ((@days * day_p) + (@start_day_hours + @end_day_hours) * hour_p).round(2)
     end
   end
+  
+  private
 
   def set_price
     self.price = calculate_price

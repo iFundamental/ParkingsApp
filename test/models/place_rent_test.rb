@@ -13,26 +13,25 @@ class PlaceRentTest < ActiveSupport::TestCase
     place_rent = place_rents(:calc_test_1)
     # 7 * 7.5 day price days
     assert_not_nil place_rent.parking
-    assert_equal(BigDecimal('52.5'), place_rent.send(:calculate_price) )
+    assert_equal(BigDecimal('52.5'), place_rent.calculate_price)
   end
 
   test "calculate price extra hours on last day" do
     # seven days and 3 hours  7*7.5 + 3 * 1.5
     place_rent = place_rents(:calc_test_2)
-
-    assert_equal(BigDecimal('57'),  place_rent.send(:calculate_price) )
+    assert_equal(BigDecimal('57'),  place_rent.calculate_price)
   end
 
   test "calculate price extra hours on first day" do
     # six days and 2 hours  6*7.5 + 2 * 1.5
     place_rent = place_rents(:calc_test_3)
-    assert_equal(BigDecimal('48'), place_rent.send(:calculate_price) )
+    assert_equal(BigDecimal('48'), place_rent.calculate_price)
   end
 
   test "calculate price extra hours on first and last day with miniutes" do
     # five days and 2  hours on first day, 5 hours on last day  5*7.5 = 37.5  2 * 1.5 = 3  5 * 1.5  = 7.5
     place_rent = place_rents(:calc_test_4)
-    assert_equal(BigDecimal('48'), place_rent.send(:calculate_price))
+    assert_equal(BigDecimal('48'), place_rent.calculate_price)
   end
 
   test "set price on save" do

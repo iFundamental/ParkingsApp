@@ -15,7 +15,7 @@ class AuthenticationTest < ActionDispatch::IntegrationTest
       click_button 'Login'
     end
     assert has_content? 'Sally Mclean'
-    assert current_path == root_path
+    assert_equal current_path, root_path
   end
 
   test 'Existing user logs in from starting not logged in at cars' do
@@ -26,8 +26,16 @@ class AuthenticationTest < ActionDispatch::IntegrationTest
       click_button 'Login'
     end
     assert has_content? 'Sally Mclean'
-    assert current_path == cars_path
+    assert_equal current_path, cars_path
+  end
+
+  test 'User Logs out' do
+    user_login
+    assert has_content? 'Sally Mclean'
+    within('.navbar-header') do
+      click_link 'Log out'
+    end
+    assert has_no_content? 'Sally Mclean'
   end
 end
-
   

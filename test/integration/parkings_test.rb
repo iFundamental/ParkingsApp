@@ -20,7 +20,7 @@ class ParkingsTest < ActionDispatch::IntegrationTest
 
   test "user adds a new parking" do
     visit new_parking_url
-    within("//form[@id='new_parking']") do
+    within('form#new_parking') do
       fill_in 'Kind', with: 'indoor'
       fill_in 'Places', with: 9
       fill_in 'Hour price', with: 4.5
@@ -36,7 +36,7 @@ class ParkingsTest < ActionDispatch::IntegrationTest
   test "user edits a parking" do
     visit parkings_url
     click_link('Edit', match: :first)
-    within("//form[@class='form-horizontal']") do
+    within('form.form-horizontal') do
       fill_in 'City', with: 'Perth'
       click_button 'Update Parking'
     end
@@ -53,7 +53,7 @@ class ParkingsTest < ActionDispatch::IntegrationTest
 
   test "user searches parkings day price " do
     visit parkings_url
-    within("//form[@id='parking_search']") do
+    within('form#parking_search') do
       fill_in 'Day price from', with: 10
       fill_in 'Day price to', with: 10
       fill_in 'City', with: ''
@@ -66,7 +66,7 @@ class ParkingsTest < ActionDispatch::IntegrationTest
 
   test "user searches parkings hour price range" do
     visit parkings_url
-    within("//form[@id='parking_search']") do
+    within('form#parking_search') do
       fill_in 'Hour price from', with: 0
       fill_in 'Hour price to', with: 1
       fill_in 'City', with: ''
@@ -79,7 +79,7 @@ class ParkingsTest < ActionDispatch::IntegrationTest
 
   test "user searches parkings city search" do
     visit parkings_url
-    within("//form[@id='parking_search']") do
+    within('form#parking_search') do
       fill_in 'City', with: 'Ber'
       check 'Show private'
       check 'Show public'

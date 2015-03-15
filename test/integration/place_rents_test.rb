@@ -9,7 +9,7 @@ class PlaceRentsTest < ActionDispatch::IntegrationTest
   test "user rents a place on parking" do
     visit parkings_url
     click_link('Rent a place', match: :first)
-    within("//form[@id='new_place_rent']") do
+    within('form#new_place_rent') do
       select('2015', from: 'place_rent_starts_at_1i')
       select('June', from: 'place_rent_starts_at_2i')
       select('20', from: 'place_rent_starts_at_3i')

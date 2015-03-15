@@ -8,7 +8,7 @@ class CarsTest < ActionDispatch::IntegrationTest
 
   test "user registers a new account" do
     visit register_url
-    within("//form[@id='new_account']") do
+    within('form#new_account') do
       fill_in 'First name', with: 'John'
       fill_in 'Last name', with: 'Smith'
       fill_in 'Email', with: 'email@address.com'
@@ -17,14 +17,12 @@ class CarsTest < ActionDispatch::IntegrationTest
       click_button 'Register'
     end
     assert has_content?('Account was successfully created.')
-    assert current_path == login_path
-    within("//form[@id='login']") do
+    assert_equal current_path, login_path
+    within('form#login') do
       fill_in 'Email', with: 'email@address.com'
       fill_in 'Password', with: 'password'
       click_button 'Login'
     end
     assert has_content? 'John Smith'
-
-
   end
 end

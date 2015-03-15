@@ -20,7 +20,7 @@ class CarsTest < ActionDispatch::IntegrationTest
 
   test "user adds a new car" do
     visit new_car_url
-    within("//form[@id='new_car']") do
+    within('form#new_car') do
       fill_in 'Model', with: 'BMW'
       fill_in 'Registration number', with: 'wwwww-zzzz'
       click_button 'Create Car'
@@ -31,7 +31,7 @@ class CarsTest < ActionDispatch::IntegrationTest
   test "user edits a car" do
     visit cars_url
     click_link('Edit', match: :first)
-    within("//form[@class='edit_car']") do
+    within('form.edit_car') do
       fill_in 'Model', with: 'Mercedes'
       click_button 'Update Car'
     end

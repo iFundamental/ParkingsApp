@@ -1,9 +1,7 @@
 require 'test_helper'
 
 class AuthenticationTest < ActionDispatch::IntegrationTest
-  setup do
-    Capybara.reset!
-  end
+
 
   test 'Test user is not logged in' do
     visit '/'
@@ -11,7 +9,7 @@ class AuthenticationTest < ActionDispatch::IntegrationTest
   end
   test 'Existing user logs in' do
     visit login_url
-    within("//form[@id='login']") do
+    within('form#login') do
       fill_in 'Email', with: 'smclean17@gmail.com'
       fill_in 'Password', with: 'testpassword'
       click_button 'Login'
@@ -21,9 +19,8 @@ class AuthenticationTest < ActionDispatch::IntegrationTest
   end
 
   test 'Existing user logs in from starting not logged in at cars' do
-    Capybara.reset!
     visit cars_url
-    within("//form[@id='login']") do
+    within('form#login') do
       fill_in 'Email', with: 'smclean17@gmail.com'
       fill_in 'Password', with: 'testpassword'
       click_button 'Login'

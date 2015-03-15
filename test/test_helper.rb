@@ -17,6 +17,10 @@ end
 class ActionDispatch::IntegrationTest
   # Make the Capybara DSL available in all integration tests
   include Capybara::DSL
+  
+  teardown do
+    Capybara.reset!
+  end
 
   def user_login
     visit login_url

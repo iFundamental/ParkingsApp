@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   Rails.application.routes.default_url_options[:host] = 'localhost:3000'
+  
   root 'parkings#index'
 
   # get 'parkings/' => 'parkings#index'
@@ -12,12 +13,13 @@ Rails.application.routes.draw do
   # patch 'parkings/:id' => 'parkings#update'
   # put 'parkings/:id' => 'parkings#update'
 
+# config/routes.rb
+
   resources :parkings do
     resources :place_rents, only: [:new, :create]
   end
   resources :place_rents, only: [:show, :index, :destroy]
   resources :cars
-
 
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
@@ -25,15 +27,9 @@ Rails.application.routes.draw do
   post 'register' => 'accounts#create'
   delete 'logout' => 'sessions#destroy'
 
-
   get '/auth/:provider/callback' => 'sessions#create'
   get '/auth/failure' => 'sessions#failure'
  
-
-
-
-
-
   # get 'place_rents' => 'place_rents#index'
   # get 'place_rents/:id' => 'place_rents#show'
   # get 'parkings/:id/place_rents/new' => 'place_rents#new'

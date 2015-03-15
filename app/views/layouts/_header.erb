@@ -13,23 +13,32 @@
           <%= current_person.full_name %>
         </p>
         <p class="navbar-text">
-          <%= link_to 'Log out', logout_path,  method: :delete %>
+          <%= link_to 'Log out', logout_path,  method: :delete,  class: 'navbar-link' %>
         </p>
         <% end %>
+         <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Language <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li> <%=link_to 'English', url_for( :locale => 'en' )%></li>
+              <li> <%=link_to 'German', url_for( :locale => 'de' )%></li>
+            </ul>
+          </li>
+        </ul>
       </div>
       <div id="navbar" class="collapse navbar-collapse pull-right">
       <ul class="nav nav-tabs">
           <li>
-            <%= link_to 'Cars', cars_path %>
+            <%= link_to 'Cars', cars_path, class: 'navbar-link' %>
           </li>
           <li>
-            <%= link_to 'Parkings', parkings_path %>
+            <%= link_to 'Parkings', parkings_path, class: 'navbar-link' %>
           </li>
           <li>
-            <%= link_to 'Rents', place_rents_path %>
+            <%= link_to 'Rents', place_rents_path, class: 'navbar-link' %>
           </li>
           <li>
-            <%= link_to 'Login', login_path %>
+            <%= link_to 'Login', login_path, class: 'navbar-link' %>
           </li>
         </ul>
     </div>

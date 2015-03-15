@@ -20,9 +20,9 @@ class Parking < ActiveRecord::Base
   def self.parking_search(params)
     parkings = Parking.all
     parkings = parkings.city_starts_with(params[:city_name]) if params[:city_name].present?
-    unless params[:show_public] == '1' && params[:show_private] == '1'
-      parkings = parkings.public_parkings if params[:show_public] == '1'
-      parkings = parkings.private_parkings if params[:show_private] == '1'
+    unless params[:show_public]  && params[:show_private]
+      parkings = parkings.public_parkings if params[:show_public]
+      parkings = parkings.private_parkings if params[:show_private]
     end
     parkings = parkings.day_price_between(params[:day_price_from], params[:day_price_to]) if params[:day_price_from].present? && params[:day_price_to].present?
     parkings = parkings.hour_price_between(params[:hour_price_from], params[:hour_price_to]) if params[:hour_price_from].present? && params[:hour_price_to].present?

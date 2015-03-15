@@ -32,30 +32,21 @@ class ParkingTest < ActiveSupport::TestCase
   end
 
   test  "all open parkings should be closed when parking is destroyed" do
-    parking = parkings(:close_rents_test)  
+    parking = parkings(:close_rents_test)
 
-    @parking_ends_at_dates = ['2019-04-07 4:30:00','2200-02-07 4:30:00','1900-02-07 4:30:00'].collect { |d| DateTime.parse(d) }
+    @parking_ends_at_dates = ['2019-04-07 4:30:00', '2200-02-07 4:30:00', '1900-02-07 4:30:00'].collect { |d| DateTime.parse(d) }
 
     assert @parking_ends_at_dates.include? parking.place_rents[0].ends_at
     assert @parking_ends_at_dates.include? parking.place_rents[1].ends_at
     assert @parking_ends_at_dates.include? parking.place_rents[2].ends_at
 
     parking.destroy
-
     car = cars(:close_rent_test_car)
 
     @cd = Date.current.to_s
-    @parking_ends_at_dates_changed = [@cd,'1900-02-07 4:30:00'].collect { |d| DateTime.parse(d).to_date }
-    #binding.pry
-    
-    assert @parking_ends_at_dates_changed.include?(car.place_rents[0].ends_at.to_date), "end date is incorrect: " + car.place_rents[0].ends_at.to_date.to_s
-    assert @parking_ends_at_dates_changed.include?(car.place_rents[1].ends_at.to_date), "end date is incorrect: " + car.place_rents[1].ends_at.to_date.to_s
-    assert @parking_ends_at_dates_changed.include?(car.place_rents[2].ends_at.to_date), "end date is incorrect: " + car.place_rents[2].ends_at.to_date.to_s
-
-    
-    
-
+    @parking_ends_at_dates_changed = [@cd, '1900-02-07 4:30:00'].collect { |d| DateTime.parse(d).to_date }
+    assert @parking_ends_at_dates_changed.include?(car.place_rents[0].ends_at.to_date), 'end date is incorrect: ' + car.place_rents[0].ends_at.to_date.to_s
+    assert @parking_ends_at_dates_changed.include?(car.place_rents[1].ends_at.to_date), 'end date is incorrect: ' + car.place_rents[1].ends_at.to_date.to_s
+    assert @parking_ends_at_dates_changed.include?(car.place_rents[2].ends_at.to_date), 'end date is incorrect: ' + car.place_rents[2].ends_at.to_date.to_s
   end
-
-
 end

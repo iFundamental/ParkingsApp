@@ -3,10 +3,10 @@ class ParkingsController < ApplicationController
 
   def index
     @search_params = search_params
-    if @search_params.key?(:filter)
-      @parkings = Parking.all.page(params[:page])
+    if params.key?('commit')
+      @parkings = Parking.parking_search(search_params).page(params[:page])
     else
-      @parkings = Parking.parking_search(@search_params).page(params[:page])
+      @parkings = Parking.all.page(params[:page])
     end
   end
 
@@ -53,11 +53,7 @@ class ParkingsController < ApplicationController
   end
 
   def search_params
-    if params.key?('search')
-      params[:search].permit(:hour_price_from, :hour_price_to, :day_price_from, :day_price_to, :city_name, :show_private, :show_public)
-    else
-      { hour_price_from: '', hour_price_to: '', day_price_from: '', day_price_to: '', city_name: '', show_private: 1, show_public: 1, filter: false }
-    end
+    params.permit(:hour_price_from, :hour_price_to, :day_price_from, :day_price_to, :city_name, :show_private, :show_public)
   end
 
   def record_not_found

@@ -49,8 +49,6 @@ class ParkingsTest < ActionDispatch::IntegrationTest
     assert_difference "all('tr').count", -1 do
       click_link('Delete', match: :first)
     end
-
-
   end
 
   test "user searches parkings day price " do

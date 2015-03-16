@@ -1,19 +1,29 @@
 <%- title "Place rental" %>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h2>View Rental Details</h2>
+      </div>
+      <div class="panel-body">
+        <p>
+          <strong>Start date:</strong>
+          <%= @place_rent.starts_at.to_s(:long_ordinal) %>
+        </p>
 
-<h1>View Rental Details</h1>
-<p>
-  <strong>Start date:</strong>
-  <%= @place_rent.starts_at.to_s(:long_ordinal) %>
-</p>
+        <p>
+          <strong>End date:</strong>
+          <%= @place_rent.ends_at.to_s(:long_ordinal) %>
+        </p>
+        <p>
+          <strong>Price:</strong>
+          <%= number_to_currency(@place_rent.price, unit:"€") %>
+        </p>
+      </div>
+      <div class="panel-footer">
+        <%= link_to 'Back', place_rents_path %>
+      </div>
+    </div>
+  </div>
+</div>
 
-<p>
-  <strong>End date:</strong>
-  <%= @place_rent.ends_at.to_s(:long_ordinal) %>
-</p>
-<p>
-  <strong>Price:</strong>
-  <%= number_to_currency(@place_rent.price, unit:"€") %>
-</p>
-
-<p><%= link_to 'Back to parkings list', parkings_path %></p>
-<p><%= link_to 'View all rentals', place_rents_path %></p>

@@ -1,13 +1,26 @@
-<h1>View Car Details</h1>
-<p>
-  <strong>Model:</strong>
-  <%= @car.model %>
-</p>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h2>Car Details</h2>
+      </div>
+      <div class="panel-body">
+        <p>
+          <strong>Model:</strong>
+          <%= @car.model %>
+        </p>
 
-<p>
-  <strong>Registration number:</strong>
-  <%= @car.registration_number %>
-</p>
+        <p>
+          <strong>Registration number:</strong>
+          <%= @car.registration_number %>
+        </p>
+      </div>
+      <div class="panel-footer">
+        <%= link_to 'Edit', edit_car_path(@car) %> |
+        <%= link_to 'Back', cars_path %>
+      </div>
+    </div>
+  </div>
+</div>
 
-<%= link_to 'Edit', edit_car_path(@car) %> |
-<%= link_to 'Back', cars_path %>
+

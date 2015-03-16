@@ -1,5 +1,6 @@
 class ParkingsController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+  before_action :find_parking, only: [:show, :edit, :update, :destroy]
 
   def index
     @search_params = search_params
@@ -11,7 +12,6 @@ class ParkingsController < ApplicationController
   end
 
   def show
-    @parking = Parking.find(params[:id])
   end
 
   def new
@@ -29,24 +29,27 @@ class ParkingsController < ApplicationController
   end
 
   def edit
-    @parking = Parking.find(params[:id])
+  
   end
 
   def update
-    @parking = Parking.find(params[:id])
     if @parking.update(parking_params)
       redirect_to @parking, notice: t('parking_update_success')
     else
       render :edit
     end
   end
-
+  
   def destroy
-    Parking.find(params[:id]).destroy
+    @parking.destroy
     redirect_to action: :index, notice: t('parking_success_delete')
   end
 
   private
+
+  def find_parking
+    @parking = Parking.find(params[:id])
+  end
 
   def parking_params
     params.require(:parking).permit(:kind, :places, :hour_price, :day_price, address_attributes: [:city, :zip_code, :street])

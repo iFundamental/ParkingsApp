@@ -24,5 +24,6 @@ class CarsTest < ActionDispatch::IntegrationTest
       click_button 'Login'
     end
     assert has_content? 'John Smith'
+    
   end
 end

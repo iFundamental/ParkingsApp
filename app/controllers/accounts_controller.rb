@@ -1,5 +1,5 @@
 class AccountsController < ApplicationController
-
+  before_action :find_account, only: [:edit]
 
   def new
     @account = Account.new
@@ -7,7 +7,6 @@ class AccountsController < ApplicationController
   end
 
   def edit
-    @account = Account.find(params[:id])
   end
 
   def create
@@ -20,20 +19,11 @@ class AccountsController < ApplicationController
     end
   end
 
-  # def update
-  #   if @account.update(account_params)
-  #     redirect_to @account, notice: 'Account was successfully updated.'
-  #   else
-  #     render :edit
-  #   end
-  # end
-
-  # def destroy
-  #   @account.destroy
-  #   redirect_to accounts_url, notice: 'Account was successfully destroyed.'
-  # end
-
   private
+
+  def find_account
+    @account = Account.find(params[:id])
+  end
 
   def account_params
     params.require(:account).permit(:email, :password, :password_confirmation, person_attributes: [:first_name, :last_name])

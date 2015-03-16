@@ -1,6 +1,6 @@
 class CarsController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
-  
+  before_action :find_car, only: [:show, :edit, :update, :destroy]
   before_action :require_login
   
   def index
@@ -8,7 +8,6 @@ class CarsController < ApplicationController
   end
 
   def show
-    @car = Car.find(params[:id])
   end
 
   def new
@@ -16,7 +15,6 @@ class CarsController < ApplicationController
   end
 
   def edit
-    @car = Car.find(params[:id])
   end
 
   def create
@@ -29,7 +27,6 @@ class CarsController < ApplicationController
   end
 
   def update
-    @car = Car.find(params[:id])
     if @car.update(car_params)
       redirect_to @car, notice: 'Car was successfully updated.'
     else
@@ -38,12 +35,15 @@ class CarsController < ApplicationController
   end
 
   def destroy
-    @car = Car.find(params[:id])
     @car.destroy
     redirect_to cars_url, notice: 'Car was successfully deleted.'
   end
 
   private
+
+  def find_car
+    @car = current_person.cars.find(params[:id])
+  end
 
   def car_params
     params.require(:car).permit(:model, :registration_number)

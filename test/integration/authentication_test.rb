@@ -1,7 +1,9 @@
 require 'test_helper'
 
 class AuthenticationTest < ActionDispatch::IntegrationTest
-
+  setup do
+    OmniAuth.config.mock_auth[:facebook] = nil
+  end
 
   test 'Test user is not logged in' do
     visit '/'
@@ -36,6 +38,15 @@ class AuthenticationTest < ActionDispatch::IntegrationTest
       click_link 'Log out'
     end
     assert has_no_content? 'Sally Mclean'
+  end
+
+  test 'User Logs in with facebook' do
+    OmniAuth.config.test_mode = true
+    OmniAuth.config.add_mock(:facebook, uid: '12345')
+    visit login_url
+    click_link 'Login with Facebook'
+    assert has_content? 'Sally Mclean'
+    assert_equal current_path, root_path
   end
 end
   

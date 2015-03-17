@@ -49,4 +49,3 @@ class AuthenticationTest < ActionDispatch::IntegrationTest
     assert_equal current_path, root_path
   end
 end
-  

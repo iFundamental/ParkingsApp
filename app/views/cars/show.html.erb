@@ -15,6 +15,9 @@
           <%= @car.registration_number %>
         </p>
       </div>
+      <div>
+        <%= image_tag @car.image.thumb('400X200#').url if @car.image_stored? %>
+      </div>
       <div class="panel-footer">
         <%= link_to 'Edit', edit_car_path(@car) %> |
         <%= link_to 'Back', cars_path %>
@@ -22,5 +25,3 @@
     </div>
   </div>
 </div>
-
-

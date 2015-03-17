@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150306141728) do
+ActiveRecord::Schema.define(version: 20150317130342) do
 
   create_table "accounts", force: :cascade do |t|
     t.integer  "person_id"
@@ -38,6 +38,8 @@ ActiveRecord::Schema.define(version: 20150306141728) do
     t.string   "registration_number"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
+    t.string   "image_uid"
+    t.string   "image_name"
   end
 
   add_index "cars", ["owner_id"], name: "index_cars_on_owner_id"

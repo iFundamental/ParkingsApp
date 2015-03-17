@@ -4,6 +4,7 @@ class CarsControllerTest < ActionController::TestCase
   setup do
     login
     @car = cars(:one)
+    # Dragonfly.app.use_datastore(:memory)
   end
 
   test "should get index" do

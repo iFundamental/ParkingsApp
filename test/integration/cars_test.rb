@@ -18,14 +18,37 @@ class CarsTest < ActionDispatch::IntegrationTest
     assert has_content? 'Honda'
   end
 
-  test "user adds a new car" do
+  test "user adds a new car with image" do
     visit new_car_url
     within('form#new_car') do
       fill_in 'Model', with: 'BMW'
       fill_in 'Registration number', with: 'wwwww-zzzz'
+      attach_file 'car_image', File.expand_path('test/fixtures/files/testimage.jpg')
       click_button 'Create Car'
     end
     assert has_content?('Car was successfully created.')
+  end
+
+  test "user adds a new car with image to big" do
+    visit new_car_url
+    within('form#new_car') do
+      fill_in 'Model', with: 'BMW'
+      fill_in 'Registration number', with: 'wwwww-zzzz'
+      attach_file 'car_image', File.expand_path('test/fixtures/files/big_image.jpg')
+      click_button 'Create Car'
+    end
+    assert has_content?('Image should not be greater than 200 KB')
+  end
+
+  test "user adds a new car with non image file" do
+    visit new_car_url
+    within('form#new_car') do
+      fill_in 'Model', with: 'BMW'
+      fill_in 'Registration number', with: 'wwwww-zzzz'
+      attach_file 'car_image', File.expand_path('test/fixtures/files/no_image.txt')
+      click_button 'Create Car'
+    end
+    assert has_content?('must be an image file format of')
   end
 
   test "user edits a car" do

@@ -1,7 +1,8 @@
 class CarsController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
-  before_action :find_car, only: [:show, :edit, :update, :destroy]
   before_action :require_login
+  before_action :find_car, only: [:show, :edit, :update, :destroy]
+
   
   def index
     @cars = current_person.cars

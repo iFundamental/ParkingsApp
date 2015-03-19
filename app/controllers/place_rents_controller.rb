@@ -1,6 +1,6 @@
 class PlaceRentsController < ApplicationController
-  before_action :find_place_rent, only: [:show, :edit, :update, :destroy]
   before_action :require_login
+  before_action :find_place_rent, only: [:show, :edit, :update, :destroy]
   
   def index
     @place_rents = PlaceRent.all

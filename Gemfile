@@ -12,6 +12,7 @@ end
 group :production do
   gem 'pg'
   gem 'rails_12factor'
+  gem 'dragonfly-s3_data_store'
 end
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -36,6 +37,7 @@ gem 'haml-rails', '~> 0.8.2'
 gem 'will_paginate', '~> 3.0.7'
 gem 'omniauth-facebook'
 gem 'dragonfly', '~> 1.0.7'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

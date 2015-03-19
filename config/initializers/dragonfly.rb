@@ -1,5 +1,5 @@
 require 'dragonfly'
-
+require 'dragonfly/s3_data_store'
 # Configure
 Dragonfly.app.configure do
   plugin :imagemagick
@@ -7,9 +7,18 @@ Dragonfly.app.configure do
 
   url_format "/media/:job/:name"
   convert_command = "/usr/local/bin/convert"
-  datastore :file,
+
+    
+  if Rails.env.test? || Rails.env.development?
+    datastore :file,
     root_path: Rails.root.join('public/system/dragonfly', Rails.env),
     server_root: Rails.root.join('public')
+  else
+    datastore :s3,
+              bucket_name: 'bootcamp6-salza80',
+              access_key_id: ENV['s3_access_key_id'],
+              secret_access_key: ENV['s3_secret_access_key']
+  end
 end
 
 # Logger
